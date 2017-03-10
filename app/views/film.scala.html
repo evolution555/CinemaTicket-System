@@ -1,0 +1,76 @@
+@(user: models.users.User, film: models.Film, env: play.api.Environment)
+@main("Film", user) {
+    @if(film != null){
+    <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">@film.getTitle</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-12" id="posterSize">
+            @if(env.resource("public/images/FilmPosters/" + film.getTitle + ".jpg").isDefined){
+                <img src="/assets/images/FilmPosters/@(film.getTitle + ".jpg")" />
+            }else{
+                <img src="/assets/images/FilmPosters/noImage.jpg" />
+            }
+            </div>
+            <div class="col-lg-9">
+                <p><b>Description: @film.getSummery</b></p>
+                <p><b>Director: @film.getDirector</b></p>
+                <p><b>Duration: @film.getDuration</b></p>
+                <p><a class="btn btn-lg btn-primary" href="#" role="button">Buy Now</a></p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Trailer</h1>
+            </div>
+        </div>
+            <!-- /.row -->
+            <!-- 16:9 aspect ratio -->
+
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="@film.getTrailerURL"></iframe>
+        </div>
+            <!-- Portfolio Item Row -->
+         <!-- Dates & times pulled from db when clicked brought to buy page where qty and purchase is done-->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">Showings</h3>
+                <!--<h3>Tuesday 11th March</h3>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+
+                <h3>Tuesday 12th March</h3>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
+
+
+            </div>-->
+        </div>
+    }else{
+        <h1>Movie Not Found</h1>
+    }
+}

@@ -1,0 +1,115 @@
+body{
+    background-color: whitesmoke;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#blue-title{
+    color: #6EC2F6;
+}
+#blue-hover:hover{
+    color: #6EC2F6;
+    transition: 1000s;
+}
+
+.navbar-default .navbar-nav > li > a:hover{
+    color: #6EC2F6;
+}
+.navbar-default .navbar-nav > li > a{
+    color: #ffffff;
+    border-color: black;
+    background-color: black;
+}
+.page-header{
+    border-color: #6EC2F6;
+}
+
+
+#black-nav{
+    background-color: black;
+}
+.btn-success{
+    background-color: #6EC2F6;
+    border-radius: 300px;
+    text-transform: uppercase;
+    border-color: transparent;
+}
+.navbar-default .navbar-toggle .icon-bar{
+   color:white;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+    background-color: black;
+}
+#posterSize img{
+    height: 350px;
+    width: 282px;
+    padding: 10px;
+}
+#footerid{
+    background-color: black;
+    height: 50px;
+    width: auto;
+}
+footer {
+    text-align: center;
+}
+footer span.copyright {
+    line-height: 40px;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    text-transform: none;
+}
+footer ul.quicklinks {
+    margin-bottom: 0;
+    line-height: 40px;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    text-transform: none;
+}
+ul.social-buttons {
+    margin-bottom: 0;
+}
+ul.social-buttons li a {
+    display: block;
+    background-color: #222222;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    font-size: 20px;
+    line-height: 40px;
+    color: white;
+    outline: none;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+ul.social-buttons li a:hover,
+ul.social-buttons li a:focus,
+ul.social-buttons li a:active {
+    background-color: #fed136;
+}
+.btn:focus,
+.btn:active,
+.btn.active,
+.btn:active:focus {
+    outline: none;
+}
+ul.social-buttons li a:hover, ul.social-buttons li a:focus, ul.social-buttons li a:active{
+    background-color: #6EC2F6;
+}
+ul.social-buttons{
+    padding: 5px;
+}
+.btn-primary{
+    color: white;
+    background-color: #6EC2F6;
+    border-radius: 300px;
+    text-transform: uppercase;
+    border-color: transparent;
+}
+#right-btn{
+    float: right;
+}
+
+#margBottom{
+    margin-bottom: 20px;
+}
