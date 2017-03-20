@@ -102,10 +102,16 @@ public class AdminController extends Controller{
     }
 
     //Showings
-    public Result adminShowing() {
+   /* public Result adminShowing(String title) {
         User u = HomeController.getUserFromSession();
         List<Showing> allShowings = Showing.findAll();
-        return ok(adminShowing.render(u, allshowing, env));
+        return ok(adminShowing.render(u, allshowings));
+    }*/
+    public Result adminShowing(String title){
+        User u = HomeController.getUserFromSession();
+        //Film f = Film.find.byId(title); need to find individual showing for film
+        List<Showing> showingsList = Showing.findAll();
+        return ok(adminShowing.render(u,showingsList));
     }
 /*
     public Result adminAddShowing(){

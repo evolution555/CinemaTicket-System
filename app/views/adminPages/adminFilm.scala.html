@@ -31,7 +31,7 @@
                 <p><b>Trailer URL:</b> <a href="@f.getTrailerURL">YouTube</a></p>
                 <p><a class="btn btn-lg btn-danger" id="right-btn" href="@routes.AdminController.deleteMovie(f.getTitle)" role="button" onclick="return confirmDel();">Delete</a></p>
                 <p><a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.updateMovie(f.getTitle)" role="button">Update</a></p>
-                <p><a class="btn btn-lg btn-primary" id="right-btn" href="#" role="button">Showings</a></p>
+                <p><a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminShowing()" role="button">Showings</a></p>
                     <!--uses the films id to access the showing for that particular film-->
 
             </div>

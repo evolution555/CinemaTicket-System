@@ -12,43 +12,66 @@ import com.avaje.ebean.*;
  */
 @Entity
 public class Showing extends Model{
-    @Id //Primary Key
-    private String id;
-    private int screenNo;
-
+    @Id
+    private Long id;
     @ManyToOne()
     private String title;
-    private String time;
+    @Constraints.Required
+    private int duration;
+    @Constraints.Required
+    private int screen;
+    @Constraints.Required
     private String date;
+    @Constraints.Required
+    private String time;
 
-    public static Finder<String, Showing> find = new Finder<String, Showing>(Film.class);
+    public Showing(){
+    }
+    public static Finder<Long, Showing> find = new Finder<Long, Showing>(Showing.class);
 
     public static List<Showing> findAll(){
         return Showing.find.all();
     }
 
-    public String getId() {
+    public Showing(Long id, String title, int duration, int screen, String date, String time) {
+        this.id = id;
+        this.title = title;
+        this.duration = duration;
+        this.screen = screen;
+        this.date = date;
+        this.time = time;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void Id() {
-        this.id = title+id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public int getScreenNo() {
-        return screenNo;
+    public String getTitle() {
+        return title;
     }
 
-    public void setScreenNo(int screenNo) {
-        this.screenNo = screenNo;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getTime() {
-        return time;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public int getScreen() {
+        return screen;
+    }
+
+    public void setScreen(int screen) {
+        this.screen = screen;
     }
 
     public String getDate() {
@@ -57,5 +80,13 @@ public class Showing extends Model{
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
