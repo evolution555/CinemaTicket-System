@@ -15,12 +15,12 @@ import java.io.*;
 
 @Security.Authenticated(Secured.class)
 @With(AuthAdmin.class)
-public class AdminController extends Controller{
+public class AdminController extends Controller {
     private FormFactory formFactory;
     private Environment env;
 
     @Inject
-    public AdminController(FormFactory f, Environment e){
+    public AdminController(FormFactory f, Environment e) {
         this.formFactory = f;
         this.env = e;
     }
@@ -31,23 +31,23 @@ public class AdminController extends Controller{
         return ok(adminFilm.render(u, allFilms, env));
     }
 
-    public Result adminAddFilm(){
+    public Result adminAddFilm() {
         Form<Film> addFilmForm = formFactory.form(Film.class);
         User u = HomeController.getUserFromSession();
         return ok(adminAddFilm.render(addFilmForm, u, null));
     }
 
-    public Result addFilmSubmit(){
+    public Result addFilmSubmit() {
         Form<Film> newFilmForm = formFactory.form(Film.class).bindFromRequest();
         String saveImageMsg;
-        if(newFilmForm.hasErrors()){
+        if (newFilmForm.hasErrors()) {
             return badRequest(adminAddFilm.render(newFilmForm, HomeController.getUserFromSession(), "Error with Form"));
         }
 
         List<Film> allFilms = Film.findAll();
         Film f = newFilmForm.get();
-        for(Film film : allFilms){
-            if(film.getTitle().equals(f.getTitle())){
+        for (Film film : allFilms) {
+            if (film.getTitle().equals(f.getTitle())) {
                 f.update();
                 routes.AdminController.adminFilm();
             }
@@ -62,26 +62,26 @@ public class AdminController extends Controller{
     }
 
     @Transactional
-    public Result updateMovie(String title){
+    public Result updateMovie(String title) {
         Film f;
         Form<Film> filmForm;
-        try{
+        try {
             f = Film.find.byId(title);
             filmForm = formFactory.form(Film.class).fill(f);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             return badRequest("error");
         }
         return ok(adminAddFilm.render(filmForm, HomeController.getUserFromSession(), null));
     }
 
-    public Result deleteMovie(String title){
+    public Result deleteMovie(String title) {
         Film.find.ref(title).delete();
         flash("success", "Movie has been deleted.");
         return redirect(routes.AdminController.adminFilm());
     }
 
-    public String saveFile(String movieTitle, FilePart<File> uploaded){
-        if(uploaded != null) {
+    public String saveFile(String movieTitle, FilePart<File> uploaded) {
+        if (uploaded != null) {
             String filename = uploaded.getFilename();
             String extension = "";
 
@@ -102,25 +102,17 @@ public class AdminController extends Controller{
     }
 
     //Showings
-    public Result adminShowing(){
+    public Result adminShowing(String title) {
         User u = HomeController.getUserFromSession();
-        //Film f = Film.find.byId(title); need to find individual showing for film
-        List<Showing> showingsList = Showing.findAll();
-        return ok(adminShowing.render(u,showingsList));
-    }
-/*
-    public Result adminAddShowing(){
-        Form<Film> addFilmForm = formFactory.form(Film.class);
-        User u = HomeController.getUserFromSession();
-        return ok(adminAddFilm.render(addFilmForm, u, null));
+        List<Showing> showingsList = Showing.findMovieShowings(title);
+        //List<Showing> showingsList = Showing.findAll();
+        return ok(adminShowing.render(u, showingsList));
     }
 
-    public Result addShowingSubmit(){
-        Form<Film> newFilmForm = formFactory.form(Film.class).bindFromRequest();
-        String saveImageMsg;
-        if(newFilmForm.hasErrors()){
-            return badRequest(adminAddFilm.render(newFilmForm, HomeController.getUserFromSession(), "Error with Form"));
-        }
+
+/*
+
+
 
         List<Film> allShowings = Showing.findAll();
         Showing s = newFilmForm.get();
@@ -179,4 +171,6 @@ public class AdminController extends Controller{
         return "no file";
     }
 */
-}
+    }
+
+

@@ -15,7 +15,6 @@ create table film (
 create table showing (
   id                            bigint not null,
   title                         varchar(255),
-  duration                      integer,
   screen                        integer,
   date                          varchar(255),
   time                          varchar(255),

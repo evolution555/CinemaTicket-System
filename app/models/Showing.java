@@ -17,8 +17,6 @@ public class Showing extends Model{
     @ManyToOne()
     private String title;
     @Constraints.Required
-    private int duration;
-    @Constraints.Required
     private int screen;
     @Constraints.Required
     private String date;
@@ -33,10 +31,13 @@ public class Showing extends Model{
         return Showing.find.all();
     }
 
-    public Showing(Long id, String title, int duration, int screen, String date, String time) {
+    public static List<Showing> findMovieShowings(String movieName){
+        return Showing.find.where().like("title", movieName).findList();
+    }
+
+    public Showing(Long id, String title, int screen, String date, String time) {
         this.id = id;
         this.title = title;
-        this.duration = duration;
         this.screen = screen;
         this.date = date;
         this.time = time;
@@ -56,14 +57,6 @@ public class Showing extends Model{
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
     }
 
     public int getScreen() {

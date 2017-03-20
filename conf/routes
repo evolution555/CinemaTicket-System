@@ -7,7 +7,7 @@ GET     /                           controllers.HomeController.index
 GET     /film                       controllers.HomeController.film
 GET     /adminFilm                  controllers.AdminController.adminFilm
 GET     /adminAddFilm               controllers.AdminController.adminAddFilm
-GET     /adminShowing               controllers.AdminController.adminShowing
+GET     /adminShowing/:title        controllers.AdminController.adminShowing(title: String)
 GET     /signUp                     controllers.HomeController.signUp
 GET     /login                      controllers.HomeController.login
 GET     /logout                     controllers.LoginController.logout
