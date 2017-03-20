@@ -19,8 +19,7 @@
                 <p><b>Description:</b> @film.getSummery</p>
                 <p><b>Director:</b> @film.getDirector</p>
                 <p><b>Duration:</b> @film.getDuration Mins</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Buy Now</a></p>
-
+                <p><a class="btn btn-lg btn-primary" href="@routes.HomeController.booking(@film.getTitle)" role="button">Buy Now @film.getTitle</a></p>
             </div>
         </div>
         <div class="row">
@@ -39,36 +38,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <h3 class="page-header">Showings</h3>
-                <!--<h3>Tuesday 11th March</h3>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-
-                <h3>Tuesday 12th March</h3>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-                <a href="#about" class="btn btn-primary btn-md page-scroll" style=" background-color: #6EC2F6;">19:00</a>
-
-
-            </div>-->
         </div>
     }else{
         <h1>Movie Not Found</h1>

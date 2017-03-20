@@ -46,6 +46,11 @@ public class HomeController extends Controller {
         Film f = Film.find.byId(title);
         return ok(film.render(getUserFromSession(), f, env));
     }
+    public Result booking(String title) {
+        Film f = Film.find.byId(title);
+        return ok(booking.render(getUserFromSession(), f, env));
+    }
+
 
     public Result signUp(){
         Form<User> adduserForm = formFactory.form(User.class);

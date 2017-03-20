@@ -10,6 +10,7 @@ GET     /adminAddFilm               controllers.AdminController.adminAddFilm
 GET     /signUp                     controllers.HomeController.signUp
 GET     /login                      controllers.HomeController.login
 GET     /logout                     controllers.LoginController.logout
+GET     /booking                    controllers.HomeController.booking
 GET     /viewMovie/:title           controllers.HomeController.viewMovie(title: String)
 GET     /updateMovie/:title         controllers.AdminController.updateMovie(title: String)
 GET     /delMovie/:title            controllers.AdminController.deleteMovie(title: String)
