@@ -1,22 +1,11 @@
 @(user: models.users.User,showings: List[models.Showing])
-    @adminPages.adminMain("Admin Showings", user) {
+    @adminPages.adminMain("Admin Showing", user) {
     <div class="container">
 
         <div class="row">
             <div class="col-lg-12">
                 <h1 style="text-align: center">Showings</h1>
                 <h1 class="page-header" style="padding-top: 10px;">Title</h1><!--Pull Title From DB-->
-            </div>
-        </div>
-            <!-- Showing Item -->
-        <div class="row">
-            <div class="col-lg-9">
-                <p><b>Time:</b></p>
-                <p><b>Screen No:</b></p>
-                <p><b>Duration:</b></p>
-                <p><a class="btn btn-lg btn-primary" id="right-btn" href="#" role="button">Edit</a></p>
-                <p><a class="btn btn-lg btn-primary" id="right-btn"href="#" role="button">Delete</a></p>
-                <h1 class="page-header" style="padding-top: 10px;"></h1>
             </div>
         </div>
             <!-- Showing Item -->
@@ -29,7 +18,10 @@
             <div class="row">
                 <div class="col-lg-9">
                     <p><b>Time:</b></p>
+                    <p><b>Date:</b> </p>
                     <p><b>Screen No:</b> @s.getScreen</p>
+                    <p><a class="btn btn-lg btn-primary" id="right-btn" href="#" role="button">Edit</a></p>
+                    <p><a class="btn btn-lg btn-primary" id="right-btn"href="#" role="button">Delete</a></p>
 
                      <!--uses the films id to access the showing for that particular film-->
 
