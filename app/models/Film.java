@@ -9,6 +9,7 @@ import com.avaje.ebean.*;
 
 @Entity
 public class Film extends Model{
+    @OneToMany(mappedBy = "titleId")
     @Id //Primary Key
     private String title;
     private String director;
