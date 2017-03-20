@@ -25,10 +25,10 @@
                 }
             </div>
             <div class="col-lg-9">
-                <p><b>Description: @f.getSummery</b></p>
-                <p><b>Director: @f.getDirector</b></p>
-                <p><b>Duration: @f.getDuration (Mins)</b></p>
-                <p><b>Trailer URL: <a href="@f.getTrailerURL">YouTube</a></b></p>
+                <p><b>Description:</b> @f.getSummery</p>
+                <p><b>Director:</b> @f.getDirector</p>
+                <p><b>Duration:</b> @f.getDuration (Mins)</p>
+                <p><b>Trailer URL:</b> <a href="@f.getTrailerURL">YouTube</a></p>
                 <p><a class="btn btn-lg btn-danger" id="right-btn" href="@routes.AdminController.deleteMovie(f.getTitle)" role="button" onclick="return confirmDel();">Delete</a></p>
                 <p><a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.updateMovie(f.getTitle)" role="button">Update</a></p>
                 <p><a class="btn btn-lg btn-primary" id="right-btn" href="#" role="button">Showings</a></p>

@@ -109,6 +109,11 @@ ul.social-buttons{
 #right-btn{
     float: right;
 }
+.btn-danger{
+    border-radius: 300px;
+    text-transform: uppercase;
+    border-color: transparent;
+}
 
 #margBottom{
     margin-bottom: 20px;

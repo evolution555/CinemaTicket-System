@@ -13,6 +13,8 @@ import java.util.*;
 import play.mvc.Http.MultipartFormData.FilePart;
 import java.io.*;
 
+@Security.Authenticated(Secured.class)
+@With(AuthAdmin.class)
 public class AdminController extends Controller{
     private FormFactory formFactory;
     private Environment env;

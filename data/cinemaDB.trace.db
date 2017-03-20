@@ -459,3 +459,6 @@ org.h2.message.DbException: The connection was not closed by the application and
 Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-192]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	... 79 more
+2017-03-10 19:55:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "SUMMERY VARCHAR(255)": "'A team of scientists, soldiers and adventurers unites to explore an uncharted island in the Pacific. Cut off from everything th... (272)"; SQL statement:
+update film set director=?, trailer_url=?, duration=?, summery=? where title=? [22001-192]
