@@ -8,12 +8,14 @@ GET     /film                       controllers.HomeController.film
 GET     /adminFilm                  controllers.AdminController.adminFilm
 GET     /adminAddFilm               controllers.AdminController.adminAddFilm
 GET     /adminShowing/:title        controllers.AdminController.adminShowing(title: String)
+GET     /adminAddShowing/:title     controllers.AdminController.adminAddShowing(title: String)
 GET     /signUp                     controllers.HomeController.signUp
 GET     /login                      controllers.HomeController.login
 GET     /logout                     controllers.LoginController.logout
 GET     /viewMovie/:title           controllers.HomeController.viewMovie(title: String)
 GET     /updateMovie/:title         controllers.AdminController.updateMovie(title: String)
 GET     /delMovie/:title            controllers.AdminController.deleteMovie(title: String)
+POST    /adminShowingSubmit         controllers.AdminController.adminShowingSubmit
 POST    /addUserSubmit              controllers.HomeController.addUserSubmit
 POST    /loginSubmit                controllers.LoginController.loginSubmit
 POST    /addFilmSubmit              controllers.AdminController.addFilmSubmit

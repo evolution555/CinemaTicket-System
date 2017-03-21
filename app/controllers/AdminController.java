@@ -106,71 +106,40 @@ public class AdminController extends Controller {
         User u = HomeController.getUserFromSession();
         List<Showing> showingsList = Showing.findMovieShowings(title);
         //List<Showing> showingsList = Showing.findAll();
-        return ok(adminShowing.render(u, showingsList));
+        return ok(adminShowing.render(u, showingsList, title));
+    }
+    //Add showings to particular film
+    public Result adminAddShowing(String title) {
+        User u = HomeController.getUserFromSession();
+        //List<Showing> showingsList = Showing.findMovieShowings(title);
+        Form<Showing> addShowingForm = formFactory.form(Showing.class);
+        return ok(adminAddShowing.render(u,addShowingForm));
     }
 
+    public Result adminShowingSubmit(){
+        User u = HomeController.getUserFromSession();
+        Form<Showing> newShowingForm = formFactory.form(Showing.class).bindFromRequest();
 
-/*
-
-
-
-        List<Film> allShowings = Showing.findAll();
-        Showing s = newFilmForm.get();
-        for(Film film : allFilms){
-            if(film.getTitle().equals(f.getTitle())){
-                f.update();
-                routes.AdminController.adminFilm();
-            }
+        if(newShowingForm.hasErrors()){
+            return ok(adminAddShowing.render(u,newShowingForm)); // val "a" is a place holder for film title val.
         }
-        f.save();
 
-        Http.MultipartFormData data = request().body().asMultipartFormData();
-        FilePart image = data.getFile("upload");
+        Showing s = newShowingForm.get();
 
-        flash("success", saveFile(f.getTitle(), image));
+        if (s.getId() == null) {
+            // Save to the database via Ebean
+            s.save();
+        }
+        // Showing already exists so update
+        else if (s.getId() != null) {
+            s.update();
+        }
+
+        flash("success", "Showing " + s.getTitle() + " has been Created/Updated");
+
         return redirect(routes.AdminController.adminFilm());
+
     }
-
-    @Transactional
-    public Result updateShowing(String title){
-        Film f;
-        Form<Film> filmForm;
-        try{
-            f = Film.find.byId(title);
-            filmForm = formFactory.form(Film.class).fill(f);
-        }catch(Exception ex){
-            return badRequest("error");
-        }
-        return ok(adminAddFilm.render(filmForm, HomeController.getUserFromSession(), null));
-    }
-
-    public Result deleteShowing(String title){
-        Film.find.ref(title).delete();
-        flash("success", "Movie has been deleted.");
-        return redirect(routes.AdminController.adminFilm());
-    }
-
-    public String saveShowingFile(String movieTitle, FilePart<File> uploaded){
-        if(uploaded != null) {
-            String filename = uploaded.getFilename();
-            String extension = "";
-
-            String mimeType = uploaded.getContentType();
-
-            if (mimeType.startsWith("image/")) {
-                int i = filename.lastIndexOf('.');
-                if (i >= 0) {
-                    extension = filename.substring(i + 1);
-                }
-
-                File file = uploaded.getFile();
-                file.renameTo(new File("public/images/FilmPosters/" + movieTitle + "." + extension));
-            }
-            return "Movie Added / Updated";
-        }
-        return "no file";
-    }
-*/
-    }
+}
 
 

@@ -1,23 +1,24 @@
-@(user: models.users.User,showings: List[models.Showing])
+@(user: models.users.User,showings: List[models.Showing], title: String)
     @adminPages.adminMain("Admin Showing", user) {
+
     <div class="container">
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 style="text-align: center">Showings</h1>
+                <h1 style="text-align:center; text-decoration:underline;">Showings</h1>
+                <h1 class="page-header" style="padding-top: 10px;">@title</h1>
             </div>
         </div>
             <!-- Showing Item -->
         @for(s <- showings){
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header" style="padding-top: 10px;">@s.getTitle</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-9">
-                    <p><b>Time:</b></p>
-                    <p><b>Date:</b> </p>
+                    <p><b>Time:</b> @s.getTime</p>
+                    <p><b>Date:</b> @s.getDate </p>
                     <p><b>Screen No:</b> @s.getScreen</p>
                     <p><a class="btn btn-lg btn-primary" id="right-btn" href="#" role="button">Edit</a></p>
                     <p><a class="btn btn-lg btn-primary" id="right-btn"href="#" role="button">Delete</a></p>
@@ -27,7 +28,7 @@
                 </div>
             </div>
         }
-        <p><a class="btn btn-xl btn-primary" href="#" role="button">Add New Showing</a></p>
+        <p><a class="btn btn-xl btn-primary" href="@routes.AdminController.adminAddShowing(title)" role="button">Add New Showing</a></p>
     </div>
 
 }
