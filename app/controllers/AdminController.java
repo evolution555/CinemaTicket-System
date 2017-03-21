@@ -118,24 +118,21 @@ public class AdminController extends Controller {
 
     public Result adminShowingSubmit(){
         User u = HomeController.getUserFromSession();
+        //DynamicForm newShowingForm = formFactory.form().bindFromRequest();
         Form<Showing> newShowingForm = formFactory.form(Showing.class).bindFromRequest();
-
         if(newShowingForm.hasErrors()){
             return ok(adminAddShowing.render(u,newShowingForm)); // val "a" is a place holder for film title val.
         }
 
         Showing s = newShowingForm.get();
 
-        if (s.getId() == null) {
+        if (s.getId() != null) {
             // Save to the database via Ebean
+            flash("success", s.getId());
             s.save();
         }
-        // Showing already exists so update
-        else if (s.getId() != null) {
-            s.update();
-        }
 
-        flash("success", "Showing " + s.getTitle() + " has been Created/Updated");
+        flash("success", "Showing " + s.getId() + " has been Created");
 
         return redirect(routes.AdminController.adminFilm());
 

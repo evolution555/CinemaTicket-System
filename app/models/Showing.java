@@ -13,7 +13,7 @@ import com.avaje.ebean.*;
 @Entity
 public class Showing extends Model{
     @Id
-    private Long id;
+    private String id;
     @ManyToOne()
     private String title;
     @Constraints.Required
@@ -35,28 +35,28 @@ public class Showing extends Model{
         return Showing.find.where().like("title", movieName).findList();
     }
 
-    public Showing(Long id, String title, int screen, String date, String time) {
-        this.id = id;
-        this.title = title;
+    public Showing(int screen, String date, String time) {
+        this.id = genId();
+        this.title = getTitle();
         this.screen = screen;
         this.date = date;
         this.time = time;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public static String genId() {
+        String id = "999";
+        return id;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getTitle(){ return title;
     }
 
     public int getScreen() {
@@ -82,4 +82,5 @@ public class Showing extends Model{
     public void setTime(String time) {
         this.time = time;
     }
+
 }

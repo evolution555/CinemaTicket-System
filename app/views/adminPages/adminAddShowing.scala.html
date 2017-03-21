@@ -3,7 +3,7 @@
 
 @adminPages.adminMain("Add Film", user){
 
-  <h4>Add a new Showing</h4>
+  <h3>Add a new Showing</h3>
   @form(action = routes.AdminController.adminShowingSubmit(), 'class -> "form-horizontal", 'role -> "form",
     'enctype -> "multipart/form-data") {
     @inputText(addShowingForm("screen"), '_label -> "Screen", 'class -> "form-control")
@@ -11,7 +11,6 @@
     @inputText(addShowingForm("time"), '_label -> "Time", 'class -> "form-control")
       <!-- Hidden ID field - required for Showing updates! -->
     @inputText(addShowingForm("id"), '_label -> "", 'hidden -> "hidden")
-
       <!--Image Upload Input-->
 
     <div class="actions" id="margBottom">
