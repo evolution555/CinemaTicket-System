@@ -10,7 +10,9 @@ import models.*;
 
 import javax.inject.Inject;
 import java.util.*;
+
 import play.mvc.Http.MultipartFormData.FilePart;
+
 import java.io.*;
 
 @Security.Authenticated(Secured.class)
@@ -108,32 +110,46 @@ public class AdminController extends Controller {
         //List<Showing> showingsList = Showing.findAll();
         return ok(adminShowing.render(u, showingsList, title));
     }
+
     //Add showings to particular film
     public Result adminAddShowing(String title) {
         User u = HomeController.getUserFromSession();
+        Film f = Film.find.byId(title);
+
         //List<Showing> showingsList = Showing.findMovieShowings(title);
-        Form<Showing> addShowingForm = formFactory.form(Showing.class);
-        return ok(adminAddShowing.render(u,addShowingForm));
+
+        return ok(adminAddShowing.render(u, f));
     }
 
-    public Result adminShowingSubmit(){
+    public Result adminShowingSubmit() {
         User u = HomeController.getUserFromSession();
-        //DynamicForm newShowingForm = formFactory.form().bindFromRequest();
-        Form<Showing> newShowingForm = formFactory.form(Showing.class).bindFromRequest();
-        if(newShowingForm.hasErrors()){
-            return ok(adminAddShowing.render(u,newShowingForm)); // val "a" is a place holder for film title val.
+        DynamicForm newShowingForm = formFactory.form().bindFromRequest();
+
+        Film f = null; //Delete this and use redirect instead of return ok.
+        if (newShowingForm.hasErrors()) {
+            return ok(adminAddShowing.render(u, f)); // val "a" is a place holder for film title val.
         }
 
-        Showing s = newShowingForm.get();
+        Showing s = null;
+        List<Showing> showings = Showing.findAll();
+        for(Showing show : showings){
+            if(show.getDate().equals(newShowingForm.get("date")) && show.getTitle().equals(newShowingForm.get("title"))){
+                s = show;
+            }
+        }
 
-        if (s.getId() != null) {
+        if(s == null) {
+            s = new Showing(Integer.parseInt(newShowingForm.get("screen")), newShowingForm.get("date"),
+                    newShowingForm.get("title")); //newShowingForm.get();
+        }
+
+        if (s.getShowingId() != null) {
             // Save to the database via Ebean
-            flash("success", s.getId());
-            s.save();
+            //flash("success", s.getShowingId());
+            s.addShowing(newShowingForm.get("time"));
         }
-
-        flash("success", "Showing " + s.getId() + " has been Created");
-
+        //flash("success", "Showing " + s.getId() + " has been Created");
+        //flash("success", newShowingForm.get("title"));
         return redirect(routes.AdminController.adminFilm());
 
     }

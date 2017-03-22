@@ -5,7 +5,7 @@
         <div class="col-lg-12">
                 <!-- Carousel
     ================================================== -->
-            @if(flash().containsKey("success")){
+            @if(flash().containsKey("success")) {
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="alert alert-success">
@@ -15,7 +15,7 @@
                 </div>
 
             }
-            @if(user != null){
+            @if(user != null) {
                 <h1>Welcome back: @user.getName</h1>
             }
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -32,7 +32,7 @@
                             <div class="carousel-caption">
                                 <h1>Logan</h1>
                                 <p>The final story of the Wolverine.</p>
-                               <!-- <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>-->
+                                    <!-- <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>-->
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                             <div class="carousel-caption">
                                 <h1>Guardians Of The Galaxy vol.2</h1>
                                 <p>The sequel to the hugely successful Guardians Of The Galaxy</p>
-                                <!--<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>-->
+                                    <!--<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>-->
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                             <div class="carousel-caption">
                                 <h1>Doctor Strange</h1>
                                 <p>The origin story of the Sorcerer Supreme Dr.Stephen Strange.</p>
-                               <!-- <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>-->
+                                    <!-- <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>-->
                             </div>
                         </div>
                     </div>
@@ -71,14 +71,14 @@
                 <!-- 4 posters to a row each poster for a particular movie on click go to movies own page pulled from db-->
                 <div class="row">
                     <div class="col-xs-12" id="posterSize">
-                        @for(f <- films){
-                            @if(env.resource("public/images/FilmPosters/" + f.getTitle + ".jpg").isDefined){
-                                <a href="@routes.HomeController.viewMovie(f.getTitle)"><img src="/assets/images/FilmPosters/@(f.getTitle + ".jpg")" /></a>
-                            }else{
-                                <a href="@routes.HomeController.viewMovie(f.getTitle)"><img src="/assets/images/FilmPosters/noImage.jpg" /></a>
+                    @for(f <- films) {
+                        @if(env.resource("public/images/FilmPosters/" + f.getTitle + ".jpg").isDefined) {
+                            <a href="@routes.HomeController.viewMovie(f.getTitle)"><img src="/assets/images/FilmPosters/@(f.getTitle + ".jpg")" /></a>
+                        } else {
+                            <a href="@routes.HomeController.viewMovie(f.getTitle)"><img src="/assets/images/FilmPosters/noImage.jpg" /></a>
 
-                            }
                         }
+                    }
                     </div>
                 </div>
             </div>

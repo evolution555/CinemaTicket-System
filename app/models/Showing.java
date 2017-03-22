@@ -13,15 +13,14 @@ import com.avaje.ebean.*;
 @Entity
 public class Showing extends Model{
     @Id
-    private String id;
+    private String showingId;
     @ManyToOne()
     private String title;
-    @Constraints.Required
     private int screen;
-    @Constraints.Required
     private String date;
-    @Constraints.Required
-    private String time;
+
+    @OneToMany (mappedBy = "showing")
+    private List<ShowingTime> times = new ArrayList<>();
 
     public Showing(){
     }
@@ -35,25 +34,37 @@ public class Showing extends Model{
         return Showing.find.where().like("title", movieName).findList();
     }
 
-    public Showing(int screen, String date, String time) {
-        this.id = genId();
-        this.title = getTitle();
+    public Showing(int screen, String date, String title) {
+        this.showingId = genId(title);
+        this.title = title;
         this.screen = screen;
         this.date = date;
-        this.time = time;
     }
 
-    public String getId() {
-        return id;
+    public void addShowing(String time){
+        ShowingTime s = new ShowingTime(time);
+        times.add(s);
+        s.setShowing(this);
+        this.save();
+        s.save();
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getShowingId() {
+        return showingId;
     }
 
-    public static String genId() {
-        String id = "999";
-        return id;
+    public void setShowingId(String id) {
+        this.showingId = id;
+    }
+
+    public static String genId(String title) {
+        String id = title;
+        Random rand = new Random();
+        int randNum = 0;
+        boolean check = true;
+            randNum = rand.nextInt((9999 - 1001) + 1) + 1001;
+        String numberAsString = Integer.toString(randNum);
+        return id + numberAsString;
     }
 
     public String getTitle(){ return title;
@@ -75,12 +86,11 @@ public class Showing extends Model{
         this.date = date;
     }
 
-    public String getTime() {
-        return time;
+    public List<ShowingTime> getTimes() {
+        return times;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setTimes(List<ShowingTime> times) {
+        this.times = times;
     }
-
 }
