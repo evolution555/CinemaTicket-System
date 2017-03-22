@@ -31,7 +31,7 @@
                 <p><b>Trailer URL:</b> <a href="@f.getTrailerURL">YouTube</a></p>
                 <p><a class="btn btn-lg btn-danger" id="right-btn" href="@routes.AdminController.deleteMovie(f.getTitle)" role="button" onclick="return confirmDel();">Delete</a></p>
                 <p><a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.updateMovie(f.getTitle)" role="button">Update</a></p>
-                <p><a class="btn btn-lg btn-primary" id="right-btn" href="#" role="button">Showings</a></p>
+                <p><a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminShowing(f.getTitle)" role="button">Showings</a></p>
                     <!--uses the films id to access the showing for that particular film-->
 
             </div>
@@ -43,7 +43,7 @@
             <h1 class="page-header" style="padding-top: 10px;">Add New Film</h1>
         </div>
     </div>
-    <p><a class="btn btn-xl btn-primary" href="@routes.AdminController.adminAddFilm()" role="button">Add New Film</a>
+    <p><a class="btn btn-lg btn-primary" href="@routes.AdminController.adminAddFilm()" role="button">Add New Film</a>
 
     <script>
         function confirmDel() {
