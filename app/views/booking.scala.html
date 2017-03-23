@@ -1,4 +1,4 @@
-@(user: models.users.User, film: models.Film, env: play.api.Environment)
+@(user: models.users.User, film: models.Film, env: play.api.Environment, show: models.Showing, time: String)
 @main("Booking", user){
     @if(film != null){
         <!-- Portfolio Item Heading -->
@@ -7,8 +7,8 @@
                 <h1 class="page-header">Booking</h1>
                 <div class="jumbotron">
                     <p><b>Title:</b> @film.getTitle</p>
-                    <p><b>Date:</b> </p>
-                    <p><b>Time:</b> </p>
+                    <p><b>Date:</b> @show.getDate </p>
+                    <p><b>Time:</b> @time</p>
                     <!--add in the selction of quantity here-->
                     <p><b>Total:</b> </p><!--cal from the qty of tickets-->
                     <p><a class="btn btn-lg btn-primary" href="#" role="button">Buy Now</a></p>

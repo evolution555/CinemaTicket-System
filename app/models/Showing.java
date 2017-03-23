@@ -2,6 +2,8 @@ package models;
 
 import java.util.*;
 import javax.persistence.*;
+
+import com.avaje.ebeaninternal.server.lib.util.Str;
 import play.data.format.*;
 import play.data.validation.*;
 
@@ -24,7 +26,8 @@ public class Showing extends Model{
 
     public Showing(){
     }
-    public static Finder<Long, Showing> find = new Finder<Long, Showing>(Showing.class);
+    public static Finder<String, Showing> find = new Finder<String, Showing>(Showing.class);
+
 
     public static List<Showing> findAll(){
         return Showing.find.all();
