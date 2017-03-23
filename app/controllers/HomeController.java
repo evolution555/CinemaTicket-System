@@ -54,8 +54,6 @@ public class HomeController extends Controller {
     public Result booking(String title, String sId, String time) {
         Film f = Film.find.byId(title);
         Showing s = Showing.find.byId(sId);
-        //ShowingTime showingtime = ShowingTime.find.where().like("showing", sId).findList();
-        //ShowingTime showTime = ShowingTime.find.where().like("time",time);
         return ok(booking.render(getUserFromSession(), f, env, s, time));
     }
 
