@@ -2,6 +2,7 @@ package models;
 
 import com.avaje.ebean.*;
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by evan_ on 22/03/2017.
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @SequenceGenerator(name = "time_gen", allocationSize=1, initialValue=1)
 public class ShowingTime extends Model {
     @Id
+    @JoinColumn(name="timeId")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "time_gen")
     private String id;
 
@@ -21,6 +23,19 @@ public class ShowingTime extends Model {
 
 
 
+
+    public static Finder<String, ShowingTime> find = new Finder<String, ShowingTime>(ShowingTime.class);
+
+    public static List<ShowingTime> findMovieShowTimes(String dateIn){
+        return ShowingTime.find.where().like("id", dateIn).findList();
+    }
+
+    public static ShowingTime findByTime(String timeIn){
+        return (ShowingTime) ShowingTime.find.where().like("time", timeIn).findList();
+    }
+
+
+    public ShowingTime() {}
 
     public ShowingTime(String time) {
         this.time = time;

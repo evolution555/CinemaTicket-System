@@ -51,9 +51,10 @@ public class HomeController extends Controller {
         return ok(film.render(getUserFromSession(), f, env, showingsList));
     }
 
-    public Result booking(String title) {
+    public Result booking(String title, String sId, String time) {
         Film f = Film.find.byId(title);
-        return ok(booking.render(getUserFromSession(), f, env));
+        Showing s = Showing.find.byId(sId);
+        return ok(booking.render(getUserFromSession(), f, env, s, time));
     }
 
 

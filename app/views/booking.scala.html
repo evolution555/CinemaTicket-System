@@ -1,4 +1,4 @@
-@(user: models.users.User, film: models.Film, env: play.api.Environment)
+@(user: models.users.User, film: models.Film, env: play.api.Environment, show: models.Showing, time: String)
 @main("Booking", user){
     @if(film != null){
         <!-- Portfolio Item Heading -->
@@ -7,8 +7,26 @@
                 <h1 class="page-header">Booking</h1>
                 <div class="jumbotron">
                     <p><b>Title:</b> @film.getTitle</p>
-                    <p><b>Date:</b> </p>
-                    <p><b>Time:</b> </p>
+                    <p><b>Date:</b> @show.getDate </p>
+                    <p><b>Time:</b> @time</p>
+                    @*Number of ticket selection*@
+                    <form action="/action_page.php">
+                        <label>Number of tickets: </label>
+                        <select name="cars">
+                            <option value="0">Select</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                        <br><br>
+                        <p><a class="btn btn-primary" href="#" role="button">Check Availibility</a></p>
+                    </form>
                     <!--add in the selction of quantity here-->
                     <p><b>Total:</b> </p><!--cal from the qty of tickets-->
                     <p><a class="btn btn-lg btn-primary" href="#" role="button">Buy Now</a></p>
