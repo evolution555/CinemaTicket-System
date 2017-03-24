@@ -2,24 +2,27 @@
 @import helper._
 
 @adminPages.adminMain("Add Film", user){
-  @if(error != null){
-    <div class="alert alert-warning">
-      <strong>@error</strong>
-    </div>
-  }
-  @helper.form(action = controllers.routes.AdminController.addFilmSubmit(), 'class -> "form-horizontal", 'role -> "form", 'enctype -> "multipart/form-data") {
-    @inputText(addFilmForm("title"), '_label -> "Title", 'class -> "form-control")
-    @inputText(addFilmForm("director"), '_label -> "Director", 'class -> "form-control")
-    @inputText(addFilmForm("trailerURL"), '_label -> "Trailer (Embedded URL Link)", 'class -> "form-control")
-    @inputText(addFilmForm("duration"), '_label -> "Duration (Mins)", 'class -> "form-control")
-    @inputText(addFilmForm("summery"), '_label -> "Description", 'class -> "form-control")
-    <label>Poster Upload</label>
-    <input class="btn-sm btn-default" id="margBottom" type="file" name="upload">
+  <div class="m-header scene_element scene_element--fadeinright">
+    @if(error != null){
+      <div class="alert alert-warning">
+        <strong>@error</strong>
+      </div>
+    }
+
+    @helper.form(action = controllers.routes.AdminController.addFilmSubmit(), 'class -> "form-horizontal", 'role -> "form", 'enctype -> "multipart/form-data") {
+      @inputText(addFilmForm("title"), '_label -> "Title", 'class -> "form-control")
+      @inputText(addFilmForm("director"), '_label -> "Director", 'class -> "form-control")
+      @inputText(addFilmForm("trailerURL"), '_label -> "Trailer (Embedded URL Link)", 'class -> "form-control")
+      @inputText(addFilmForm("duration"), '_label -> "Duration (Mins)", 'class -> "form-control")
+      @inputText(addFilmForm("summery"), '_label -> "Description", 'class -> "form-control")
+      <label>Poster Upload</label>
+      <input class="btn-sm btn-default" id="margBottom" type="file" name="upload">
 
 
-    <div class="actions" id="margBottom">
-      <input type="submit" value="Add Film" class="btn btn-primary">
-      <a href="@routes.AdminController.adminFilm()" <button class="btn btn-warning">Cancel</button></a>
+      <div class="actions" id="margBottom">
+        <input type="submit" value="Add Film" class="btn btn-primary">
+        <a href="@routes.AdminController.adminFilm()" <button class="btn btn-warning">Cancel</button></a>
+      </div>
     </div>
   }
 }
