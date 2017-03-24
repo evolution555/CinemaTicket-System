@@ -122,6 +122,12 @@ ul.social-buttons{
     margin:5px;
     border-color: transparent;
 }
+.btn-warning {
+    border-radius: 300px;
+    text-transform: uppercase;
+    margin:5px;
+    border-color: transparent;
+}
 
 #margBottom{
     margin-bottom: 20px;
@@ -131,7 +137,7 @@ h1{
 }
 
 /*
- * Keyframes
+ * Animation Effects
  */
 
 @keyframes fadeIn {
