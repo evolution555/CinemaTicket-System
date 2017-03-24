@@ -4,6 +4,7 @@ import javax.persistence.*;
 import com.avaje.ebean.Model;
 import play.data.format.*;
 import play.data.validation.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
 public class User extends Model{
@@ -18,7 +19,7 @@ public class User extends Model{
         user.setEmail(email);
         user.setName(name);
         user.setRole(role);
-        user.setPassword(password);
+        user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
         user.save();
         return user;
     }
@@ -40,7 +41,12 @@ public class User extends Model{
     }
 
     public static User authenticate(String email, String password){
-        return find.where().eq("email", email).eq("password", password).findUnique();
+        User user = User.find.where().eq("email", email).findUnique();
+        if (user != null && BCrypt.checkpw(password, user.getPassword())) {
+            return user;
+        }else{
+            return null;
+        }
     }
 
     public String getEmail() {
