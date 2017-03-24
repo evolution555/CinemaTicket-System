@@ -7,9 +7,11 @@ GET         /                              controllers.HomeController.index
 GET         /film                          controllers.HomeController.film
 GET         /adminFilm                     controllers.AdminController.adminFilm
 GET         /adminAddFilm                  controllers.AdminController.adminAddFilm
-GET         /booking/:title/:id/:time     controllers.HomeController.booking(title : String, id: String, time: String)
+GET         /booking/:title/:id/:time      controllers.HomeController.booking(title : String, id: String, time: String)
 GET         /adminShowing/:title           controllers.AdminController.adminShowing(title: String)
 GET         /adminAddShowing/:title        controllers.AdminController.adminAddShowing(title: String)
+GET         /updateShowing/:title          controllers.AdminController.updateShowing(title: String)
+GET         /deleteShowing/:id             controllers.AdminController.deleteShowing(id: String)
 GET         /signUp                        controllers.HomeController.signUp
 GET         /login                         controllers.HomeController.login
 GET         /logout                        controllers.LoginController.logout

@@ -144,14 +144,29 @@ public class AdminController extends Controller {
         }
 
         if (s.getShowingId() != null) {
-            // Save to the database via Ebean
-            //flash("success", s.getShowingId());
             s.addShowing(newShowingForm.get("time"));
         }
-        //flash("success", "Showing " + s.getId() + " has been Created");
-        //flash("success", newShowingForm.get("title"));
         return redirect(routes.AdminController.adminFilm());
-
+    }
+    //need to fill html form with showing details.
+    @Transactional
+    public Result updateShowing(String title) {
+        User u = HomeController.getUserFromSession();
+        Film f;
+        Form<Film> filmForm;
+        try {
+            f = Film.find.byId(title);
+            filmForm = formFactory.form(Film.class).fill(f);
+        } catch (Exception ex) {
+            return badRequest("error");
+        }
+        return ok(adminAddShowing.render(HomeController.getUserFromSession(), null));
+    }
+    //Needs on delete cascade
+    public Result deleteShowing(String id) {
+        Showing.find.ref(id).delete();
+        flash("success", "Showing has been deleted.");
+        return redirect(routes.AdminController.adminFilm());
     }
 }
 

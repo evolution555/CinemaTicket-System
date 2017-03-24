@@ -23,8 +23,8 @@
                             @s.getDate </p>
                         <p><b>Screen No:</b>
                             @s.getScreen</p>
-                        <p><a class="btn btn-lg btn-primary" id="right-btn" href="#" role="button">Edit</a></p>
-                        <p><a class="btn btn-lg btn-primary" id="right-btn" href="#" role="button">Delete</a></p>
+                        <p><a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.updateShowing(s.getShowingId)" role="button">Edit</a></p>
+                        <p><a class="btn btn-lg btn-danger" id="right-btn" href="@routes.AdminController.deleteShowing(s.getShowingId)" role="button">Delete</a></p>
                     </div>
                 </div>
             </div>

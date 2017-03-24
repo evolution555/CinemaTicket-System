@@ -27,11 +27,12 @@
             <div class="row">
                 <div class="col-lg-8">
                     @if(user != null){
-                        <h1>Welcome to the Admin Portal: @user.getName</h1>
+                        <h1>Admin Portal: @user.getName</h1>
                     }
                 </div>
                 <div class="col-lg-4">
-                    <p><a class="btn btn-lg btn-primary" id="right-btn" href="@routes.LoginController.logout()" role="button">Logout</a></p>
+                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.LoginController.logout()" role="button">Logout</a>
+                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminFilm()" role="button">Home</a>
                 </div>
             </div>
 
