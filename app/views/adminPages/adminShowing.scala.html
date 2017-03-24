@@ -14,16 +14,18 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header" style="padding-top: 10px;">@s.getDate</h1>
-                    <p><b>Time:</b></p>
-                    @for(a <- s.getTimes()){
-                        <p>@a.getTime</p>
-                    }
-                    <p><b>Date:</b>
-                        @s.getDate </p>
-                    <p><b>Screen No:</b>
-                        @s.getScreen</p>
-                    <p><a class="btn btn-lg btn-primary" id="right-btn" href="#" role="button">Edit</a></p>
-                    <p><a class="btn btn-lg btn-primary" id="right-btn" href="#" role="button">Delete</a></p>
+                    <div class="m-header scene_element scene_element--fadeinright">
+                        <p><b>Time:</b></p>
+                        @for(a <- s.getTimes()){
+                            <p>@a.getTime</p>
+                        }
+                        <p><b>Date:</b>
+                            @s.getDate </p>
+                        <p><b>Screen No:</b>
+                            @s.getScreen</p>
+                        <p><a class="btn btn-lg btn-primary" id="right-btn" href="#" role="button">Edit</a></p>
+                        <p><a class="btn btn-lg btn-primary" id="right-btn" href="#" role="button">Delete</a></p>
+                    </div>
                 </div>
             </div>
         }

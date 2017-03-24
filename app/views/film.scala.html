@@ -8,17 +8,21 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-sm-12" id="posterSize">
-            @if(env.resource("public/images/FilmPosters/" + film.getTitle + ".jpg").isDefined) {
-                <img src="/assets/images/FilmPosters/@(film.getTitle + ".jpg")" />
-            } else {
-                <img src="/assets/images/FilmPosters/noImage.jpg" />
-            }
+            <div class="m-header scene_element scene_element--fadein">
+                <div class="col-lg-3 col-sm-12" id="posterSize">
+                @if(env.resource("public/images/FilmPosters/" + film.getTitle + ".jpg").isDefined) {
+                    <img src="/assets/images/FilmPosters/@(film.getTitle + ".jpg")" />
+                } else {
+                    <img src="/assets/images/FilmPosters/noImage.jpg" />
+                }
+                </div>
             </div>
-            <div class="col-lg-9">
-                <p><b>Description:</b> @film.getSummery</p>
-                <p><b>Director:</b> @film.getDirector</p>
-                <p><b>Duration:</b> @film.getDuration Mins</p>
+            <div class="m-right-panel m-page scene_element scene_element--fadeinright">
+                <div class="col-lg-9">
+                    <p><b>Description:</b> @film.getSummery</p>
+                    <p><b>Director:</b> @film.getDirector</p>
+                    <p><b>Duration:</b> @film.getDuration Mins</p>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -28,9 +32,10 @@
         </div>
             <!-- /.row -->
             <!-- 16:9 aspect ratio -->
-
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="@film.getTrailerURL"></iframe>
+        <div class="m-page scene_element scene_element--fadeinup">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="@film.getTrailerURL"></iframe>
+            </div>
         </div>
             <!-- Portfolio Item Row -->
             <!-- Dates & times pulled from db when clicked brought to buy page where qty and purchase is done-->

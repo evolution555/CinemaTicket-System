@@ -4,7 +4,10 @@ body{
 }
 
 #blue-title{
-    color: #6EC2F6;
+    color: black;
+    -webkit-animation: neon2 2s ease-in-out infinite alternate;
+    -moz-animation: neon2 2s ease-in-out infinite alternate;
+    animation: neon2 2s ease-in-out infinite alternate;
 }
 #blue-hover:hover{
     color: #6EC2F6;
@@ -13,6 +16,9 @@ body{
 
 .navbar-default .navbar-nav > li > a:hover{
     color: #6EC2F6;
+    -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
+    -moz-animation: neon2 1.5s ease-in-out infinite alternate;
+    animation: neon2 1.5s ease-in-out infinite alternate;
 }
 .navbar-default .navbar-nav > li > a{
     color: #ffffff;
@@ -122,4 +128,91 @@ ul.social-buttons{
 }
 h1{
     font-family: 'Audiowide', cursive;
+}
+
+/*
+ * Keyframes
+ */
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translate3d(100%, 0, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/*
+ * CSS Page Transitions
+ * Don't forget to add vendor prefixes!
+ */
+
+
+/** Basic styles for an animated element */
+.scene_element {
+    animation-duration: 1s;
+    transition-timing-function: ease-in;
+    animation-fill-mode: both;
+
+}
+
+
+/** An element that fades in */
+.scene_element--fadein {
+    animation-name: fadeIn;
+}
+
+/** An element that fades in and slides up */
+.scene_element--fadeinup {
+    animation-name: fadeInUp;
+}
+
+/** An element that fades in and slides from the right */
+.scene_element--fadeinright {
+    animation-name: fadeInRight;
+}
+
+/*glow for webkit*/
+@-webkit-keyframes neon2 {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 0px #fff, 0 0 00px #fff, 0 0 0px #228DFF, 0 0 0px #228DFF, 0 0 0px #228DFF, 0 0 00px #228DFF, 0 0 0px #228DFF;
+    }
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 00px #fff, 0 0 0px #fff, 0 0 00px #228DFF, 0 0 0px #228DFF, 0 0 0px #228DFF, 0 0 50px #228DFF, 0 0 30px #228DFF;
+    }
+}
+/*glow for mozilla*/
+@-moz-keyframes neon2 {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+    }
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+    }
 }
