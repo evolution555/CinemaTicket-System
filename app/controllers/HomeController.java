@@ -35,7 +35,12 @@ public class HomeController extends Controller {
     public Result index() {
         User u = getUserFromSession();
         List<Film> allFilms = Film.findAll();
-        return ok(index.render(u, allFilms, env));
+        List<carousel> allCarousel = carousel.findAll();
+        return ok(index.render(u, allFilms, env, allCarousel));
+    }
+
+    public Result aboutUs(){
+        return ok(contactUs.render(getUserFromSession()));
     }
 
     public Result film() {

@@ -6,6 +6,9 @@
 GET         /                              controllers.HomeController.index
 GET         /film                          controllers.HomeController.film
 GET         /adminFilm                     controllers.AdminController.adminFilm
+GET         /adminBanners                  controllers.AdminController.adminBanners
+GET         /adminAddCarousel              controllers.AdminController.adminAddCarousel
+GET         /adminDeleteBanners/:title     controllers.AdminController.deleteBanners(title: String)
 GET         /adminAddFilm                  controllers.AdminController.adminAddFilm
 GET         /booking/:title/:id/:time      controllers.HomeController.booking(title : String, id: String, time: String)
 GET         /adminShowing/:title           controllers.AdminController.adminShowing(title: String)
@@ -18,6 +21,7 @@ GET         /logout                        controllers.LoginController.logout
 GET         /viewMovie/:title              controllers.HomeController.viewMovie(title: String)
 GET         /updateMovie/:title            controllers.AdminController.updateMovie(title: String)
 GET         /delMovie/:title               controllers.AdminController.deleteMovie(title: String)
+POST        /addCarouselSubmit             controllers.AdminController.addCarouselSubmit
 POST        /adminShowingSubmit            controllers.AdminController.adminShowingSubmit
 POST        /addUserSubmit                 controllers.HomeController.addUserSubmit
 POST        /loginSubmit                   controllers.LoginController.loginSubmit
