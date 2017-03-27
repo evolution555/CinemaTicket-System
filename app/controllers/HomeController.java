@@ -68,6 +68,16 @@ public class HomeController extends Controller {
         return ok(login.render(loginForm));
     }
 
+    public Result contact() {
+        User u = getUserFromSession();
+        return ok(contact.render(u));
+    }
+
+    public Result payment() {
+        User u = getUserFromSession();
+        return ok(payment.render(u));
+    }
+
     public Result addUserSubmit() {
         DynamicForm newUserForm = formFactory.form().bindFromRequest();
         Form errorForm = formFactory.form().bindFromRequest();
