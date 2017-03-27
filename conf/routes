@@ -18,6 +18,8 @@ GET         /logout                        controllers.LoginController.logout
 GET         /viewMovie/:title              controllers.HomeController.viewMovie(title: String)
 GET         /updateMovie/:title            controllers.AdminController.updateMovie(title: String)
 GET         /delMovie/:title               controllers.AdminController.deleteMovie(title: String)
+GET         /contact                       controllers.HomeController.contact
+GET         /payment                       controllers.HomeController.payment
 POST        /adminShowingSubmit            controllers.AdminController.adminShowingSubmit
 POST        /addUserSubmit                 controllers.HomeController.addUserSubmit
 POST        /loginSubmit                   controllers.LoginController.loginSubmit
