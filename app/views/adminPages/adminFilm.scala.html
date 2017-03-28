@@ -1,4 +1,4 @@
-@(user: models.users.User, films: List[models.Film], env: play.api.Environment)
+@(user: models.users.User, films: List[models.Film], env: play.api.Environment, carousels: List[models.carousel])
 @adminPages.adminMain("Admin Homepage", user) {
     @if(flash().containsKey("success")){
         <div class="row">

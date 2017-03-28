@@ -36,6 +36,12 @@ create table user (
   constraint pk_user primary key (email)
 );
 
+create table carousel (
+  title                         varchar(255) not null,
+  description                   varchar(255),
+  constraint pk_carousel primary key (title)
+);
+
 alter table showing_time add constraint fk_showing_time_showingid foreign key (showingid) references showing (showing_id) on delete restrict on update restrict;
 create index ix_showing_time_showingid on showing_time (showingid);
 
@@ -53,4 +59,6 @@ drop table if exists showing_time;
 drop sequence if exists showing_time_seq;
 
 drop table if exists user;
+
+drop table if exists carousel;
 

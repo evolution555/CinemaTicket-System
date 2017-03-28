@@ -1,0 +1,45 @@
+@(user: models.users.User, films: List[models.Film], env: play.api.Environment, carousels: List[models.carousel])
+@adminPages.adminMain("Admin Banners", user) {
+    @if(flash().containsKey("success")){
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="alert alert-success">
+                    <strong>@flash().get("success")</strong>
+                </div>
+            </div>
+        </div>
+
+    }
+    <h1 class="page-header" style="padding-top: 10px;">Banners</h1>
+    <!--Start of Banners.........................................................................-->
+    @for(c <- carousels){
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="m-header scene_element scene_element--fadein">
+                    <div class="col-lg-5 col-sm-12" id="posterSize">
+                        @if(env.resource("public/images/Banners/" + c.getTitle+ ".jpg").isDefined){
+                            <img style="height: 250px;width: 400px;" src="/assets/images/Banners/@(c.getTitle + ".jpg")" />
+                        }else{
+                            <img src="/assets/images/FilmPosters/noImage.jpg" />
+                        }
+                    </div>
+                </div>
+                <div class="m-header scene_element scene_element--fadeinright">
+                    <div class="col-lg-7">
+                        <p><b>Heading: </b>@c.getTitle</p>
+                        <p><b>Subheading: </b>@c.getDescription</p>
+                        <a class="btn btn-lg btn-danger" id="right-btn" href="@routes.AdminController.deleteBanners(c.getTitle)" role="button">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!--End of Banners..............................................................................-->
+    <h1 class="page-header" style="padding-top: 10px;">Add New Slide</h1>
+    <a class="btn btn-lg btn-primary" href="@routes.AdminController.adminAddCarousel()" role="button">Add Slide</a>
+    <script>
+        function confirmDel() {
+            return confirm('Are you sure?');
+        }
+    </script>
+}

@@ -30,7 +30,8 @@ public class AdminController extends Controller {
     public Result adminFilm() {
         User u = HomeController.getUserFromSession();
         List<Film> allFilms = Film.findAll();
-        return ok(adminFilm.render(u, allFilms, env));
+        List<carousel> allCarosels = carousel.findAll();
+        return ok(adminFilm.render(u, allFilms, env, allCarosels));
     }
 
     public Result adminAddFilm() {
@@ -166,6 +167,46 @@ public class AdminController extends Controller {
     public Result deleteShowing(String id) {
         Showing.find.ref(id).delete();
         flash("success", "Showing has been deleted.");
+        return redirect(routes.AdminController.adminFilm());
+    }
+
+    //Carousel
+    public Result adminBanners(){
+        User u = HomeController.getUserFromSession();
+        List<Film> allFilms = Film.findAll();
+        List<carousel> allCarousels = carousel.findAll();
+        return ok(adminBanners.render(u, allFilms, env, allCarousels));
+    }
+    public Result adminAddCarousel() {
+        Form<carousel> addCarouselForm = formFactory.form(carousel.class);
+        User u = HomeController.getUserFromSession();
+        return ok(adminAddCarousel.render(addCarouselForm, u, null));
+    }
+    public Result addCarouselSubmit() {
+        Form<carousel> addCarouselForm = formFactory.form(carousel.class).bindFromRequest();
+        if (addCarouselForm.hasErrors()) {
+            return badRequest(adminAddCarousel.render(addCarouselForm, HomeController.getUserFromSession(), "Error with Form"));
+        }
+
+        List<carousel> allcarousels = carousel.findAll();
+        carousel c = addCarouselForm.get();
+        for (carousel carousel : allcarousels) {
+            if (carousel.getTitle().equals(c.getTitle())) {
+                c.update();
+                routes.AdminController.adminAddCarousel();
+            }
+        }
+        c.save();
+
+        Http.MultipartFormData data = request().body().asMultipartFormData();
+        FilePart image = data.getFile("upload");
+
+        flash("success", "Banner Added");
+        return redirect(routes.AdminController.adminFilm());
+    }
+    public Result deleteBanners(String title) {
+        carousel.find.ref(title).delete();
+        flash("success", "Banner has been deleted.");
         return redirect(routes.AdminController.adminFilm());
     }
 }
