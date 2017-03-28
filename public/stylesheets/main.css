@@ -50,26 +50,14 @@ body{
     width: 282px;
     padding: 10px;
 }
-
-#contact {
-   /*** place holder for contact page ***/
+#footerid{
+    background-color: black;
+    height: 50px;
+    width: auto;
 }
-
-#payment {
-    background:#333333;
-    color:#f4f4f4;
-    text-align: center;
-
-}
-
-#footer {
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:60px;   /* Height of the footer */
+footer {
     text-align: center;
 }
-
 footer span.copyright {
     line-height: 40px;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -233,125 +221,4 @@ h1{
     to {
         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
     }
-}
-
-/***************RATING STAR****************/
-
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-
-
-/****** Style Star Rating Widget *****/
-
-.rating {
-    border: none;
-    float: left;
-}
-
-.rating > input { display: none; }
-.rating > label:before {
-    margin: 5px;
-    font-size: 1.25em;
-    font-family: FontAwesome;
-    display: inline-block;
-    content: "\f005";
-}
-
-.rating > .half:before {
-    content: "\f089";
-    position: absolute;
-}
-
-.rating > label {
-    color: #ddd;
-    float: right;
-}
-
-/***** CSS Magic to Highlight Stars on Hover *****/
-
-.rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
-
-.rating > input:checked + label:hover, /* hover current star when changing rating */
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
-
-/******** LOGIN FORM ********/
-.login-form {
-    margin: auto;
-    width: 35%;
-}
-
-/******** REGISTER FORM ********/
-.reg-form {
-    margin: auto;
-    width: 50%;
-}
-
-/****** CONTACT FORM *********/
-.con-form {
-    margin: auto;
-    width: 60%;
-}
-
-/**** CONTACT BUTTON *****/
-.con-button {
-    padding: 10px;
-}
-/********** CONTACT Popup container ***********/
-.popup {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* The actual popup */
-.popup .popuptext {
-    visibility: hidden;
-    width: 160px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
-}
-
-/* Popup arrow */
-.popup .popuptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-/* Toggle this class - hide and show the popup */
-.popup .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s;
-}
-
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
 }
