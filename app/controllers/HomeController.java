@@ -60,8 +60,7 @@ public class HomeController extends Controller {
     }
 
     public Result bookingSubmit(){
-            DynamicForm newBookingForm = formFactory.form().bindFromRequest();
-            Form errorForm = formFactory.form().bindFromRequest();
+            Form <Booking> newBookingForm = formFactory.form(Booking.class).bindFromRequest();
             Film f = null;
             Showing s = null;
             String time = null;
@@ -70,7 +69,7 @@ public class HomeController extends Controller {
                 return badRequest(booking.render(getUserFromSession(), f, env, s, time, "Error in form."));
             }
             //Adding Booking to database
-            Booking b = new Booking();
+            Booking b = newBookingForm.get();
             b.save();
             flash("success" );
             return redirect(controllers.routes.HomeController.index()); // change to payments

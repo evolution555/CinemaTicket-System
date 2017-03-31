@@ -3,6 +3,18 @@
 
 # --- !Ups
 
+create table booking (
+  booking_id                    integer not null,
+  title                         varchar(255),
+  time                          varchar(255),
+  date                          varchar(255),
+  qty                           integer,
+  total                         double,
+  cost                          double,
+  constraint pk_booking primary key (booking_id)
+);
+create sequence booking_seq;
+
 create table film (
   title                         varchar(255) not null,
   director                      varchar(255),
@@ -50,6 +62,9 @@ create index ix_showing_time_showingid on showing_time (showingid);
 
 alter table showing_time drop constraint if exists fk_showing_time_showingid;
 drop index if exists ix_showing_time_showingid;
+
+drop table if exists booking;
+drop sequence if exists booking_seq;
 
 drop table if exists film;
 
