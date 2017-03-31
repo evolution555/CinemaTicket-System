@@ -4,7 +4,7 @@ body{
 }
 
 #blue-title{
-    color: black;
+    color: #222222;
     -webkit-animation: neon2 2s ease-in-out infinite alternate;
     -moz-animation: neon2 2s ease-in-out infinite alternate;
     animation: neon2 2s ease-in-out infinite alternate;
@@ -21,9 +21,9 @@ body{
     animation: neon2 1.5s ease-in-out infinite alternate;
 }
 .navbar-default .navbar-nav > li > a{
-    color: #ffffff;
-    border-color: black;
-    background-color: black;
+    color: white;
+    border-color: #222222;
+    background-color: #222222;
 }
 .page-header{
     border-color: #6EC2F6;
@@ -31,7 +31,7 @@ body{
 
 
 #black-nav{
-    background-color: black;
+    background-color:#222222;
 }
 .btn-success{
     background-color: #6EC2F6;
@@ -43,7 +43,7 @@ body{
    color:white;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
-    background-color: black;
+    background-color: #222222;
 }
 #posterSize img{
     height: 350px;
@@ -51,7 +51,7 @@ body{
     padding: 10px;
 }
 #footerid{
-    background-color: black;
+    background-color: #222222;
     height: 50px;
     width: auto;
 }

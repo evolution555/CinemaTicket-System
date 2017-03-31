@@ -39,9 +39,6 @@ public class HomeController extends Controller {
         return ok(index.render(u, allFilms, env, allCarousel));
     }
 
-    public Result aboutUs(){
-        return ok(contactUs.render(getUserFromSession()));
-    }
 
     public Result film() {
         User u = getUserFromSession();
@@ -59,7 +56,24 @@ public class HomeController extends Controller {
     public Result booking(String title, String sId, String time) {
         Film f = Film.find.byId(title);
         Showing s = Showing.find.byId(sId);
-        return ok(booking.render(getUserFromSession(), f, env, s, time));
+        return ok(booking.render(getUserFromSession(), f, env, s, time, null));
+    }
+
+    public Result bookingSubmit(){
+            DynamicForm newBookingForm = formFactory.form().bindFromRequest();
+            Form errorForm = formFactory.form().bindFromRequest();
+            Film f = null;
+            Showing s = null;
+            String time = null;
+            //Checking if Form has errors.
+            if(newBookingForm.hasErrors()){
+                return badRequest(booking.render(getUserFromSession(), f, env, s, time, "Error in form."));
+            }
+            //Adding Booking to database
+            Booking b = new Booking();
+            b.save();
+            flash("success" );
+            return redirect(controllers.routes.HomeController.index()); // change to payments
     }
 
 

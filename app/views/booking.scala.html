@@ -1,4 +1,5 @@
-@(user: models.users.User, film: models.Film, env: play.api.Environment, show: models.Showing, time: String)
+@(user: models.users.User, film: models.Film, env: play.api.Environment, show: models.Showing, time: String, error: String)
+
 @main("Booking", user){
     @if(film != null){
         <!-- Portfolio Item Heading -->
@@ -10,27 +11,21 @@
                         <p><b>Title:</b> @film.getTitle</p>
                         <p><b>Date:</b> @show.getDate </p>
                         <p><b>Time:</b> @time</p>
+
                         @*Number of ticket selection*@
-                        <form action="/action_page.php">
-                            <label>Number of tickets: </label>
-                            <select name="cars">
-                                <option value="0">Select</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
+                        <form method = "post" action="@routes.HomeController.bookingSubmit()" class="form-horizontal">
+                            <label>Ticket Qty: </label>
+                            <input type="qty" name="qty" />
+                            <select id="margBot" name="qty">
+                                <option id="0">Select</option><option id="1">1</option><option id="2">2</option><option id="3">3</option><option id="4">4</option><option id="5">5</option>
+                                <option id="6">6</option><option id="7">7</option><option id="8">8</option><option id="9">9</option>
                             </select>
-                            <br><br>
-                            <p><a class="btn btn-primary" href="#" role="button">Check Availibility</a></p>
+                            <div class="actions">
+                                <input type="submit" value="Confirm Booking" class="btn btn-primary">
+                                <a href="@routes.HomeController.index()"><button type="button" class="btn btn-primary text-center">Cancel</button></a>
+                            </div>
                         </form>
-                        <!--add in the selction of quantity here-->
-                        <p><b>Total:</b> </p><!--cal from the qty of tickets-->
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Buy Now</a></p>
+
                     </div>
                 </div>
             </div>
