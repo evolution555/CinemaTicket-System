@@ -16,17 +16,17 @@ public class Booking extends Model{
     private String time;
     private String date;
     private int qty;
-
-    private double total;
+    public double total;
 
     private final double COST = 10.00;
 
-    public Booking(int qty, String time, String date) {
-        bookingId = genId();
+
+    public Booking(int qty, String time, String date, int totalIn) {
+        this.bookingId = genId();
         this.qty = qty;
         this.time = time;
         this.date = date;
-        total = calcTotal(qty);
+        this.total= calcTotal(qty);
     }
 
     public int genId(){
@@ -35,11 +35,56 @@ public class Booking extends Model{
        return randNum;
     }
     public double calcTotal(int qty){
-        total = qty * COST;
-        return total;
+        double newTotal;
+        newTotal= qty * COST;
+        return newTotal;
     }
 
     public int getBookingId() {
         return bookingId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public double getCOST() {
+        return COST;
     }
 }

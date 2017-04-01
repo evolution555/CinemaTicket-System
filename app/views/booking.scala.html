@@ -1,4 +1,5 @@
-@(user: models.users.User, film: models.Film, env: play.api.Environment, show: models.Showing, time: String, error: String)
+@(addBookingForm: Form[models.Booking], user: models.users.User, film: models.Film, env: play.api.Environment, show: models.Showing, time: String, error: String)
+@import helper._
 
 @main("Booking", user){
     @if(film != null){
@@ -12,30 +13,25 @@
                         <p><b>Date:</b> @show.getDate </p>
                         <p><b>Time:</b> @time</p>
 
-                        <form method="post" action="@routes.HomeController.bookingSubmit()" class="form-horizontal">
+                        @helper.form(action = controllers.routes.HomeController.bookingSubmit(), 'class -> "form-horizontal", 'role -> "form", 'enctype -> "multipart/form-data") {
                             @*Number of ticket selection*@
-                            <select id="qty" name="qty">
-                                <option value="0">Select</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                            <input type="hidden" id="title" name="title" class="form-control" value="@film.getTitle"/>
+                            @select(addBookingForm("qty"), options("0" -> "Select", "1" -> "1", "2" -> "2", "3" -> "3", "4" -> "4", "5" -> "5", "6" -> "6", "7" -> "7", "8" -> "8", "9" -> "9"), '_label -> "Quantity")
+                            <input type="hidden" name="title" id="title" value="@film.getTitle">
+                            <input type="hidden" name="time" id="time" value="@time">
+                            <input type="hidden" name="date" id="date" value="@show.getDate">
                             <div class="actions" id="margBottom">
                                 <input type="submit" value="Add Booking" class="btn btn-primary">
-                                <a href="@routes.AdminController.adminFilm()" <button class="btn btn-warning">Cancel</button></a>
+                                <a href="@routes.HomeController.index()" <button class="btn btn-warning">Cancel</button>
                             </div>
-                        </form>
+                        }
 
                     </div>
                 </div>
             </div>
         </div>
-            </div>
             }else{
         <h1>Booking not available</h1>
     }
-</div>
 
 
 }
