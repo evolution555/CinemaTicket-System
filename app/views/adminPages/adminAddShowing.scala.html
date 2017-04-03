@@ -1,22 +1,58 @@
 @(user: models.users.User, film: models.Film)
 
-@adminPages.adminMain("Add Film", user){
+@adminPages.adminMain("Add Showing", user) {
 
 
-  <div class="m-header scene_element scene_element--fadeinright">
-    <h3>Add a new Showing</h3>
-    <form method="post" action="@routes.AdminController.adminShowingSubmit()" class="form-horizontal">
-      <label>Screen</label>
-      <input type="text" id="screen" name="screen" class="form-control"/>
-      <label>Date</label>
-      <input type="text" id="date" name="date" class="form-control" />
-      <label>Time</label>
-      <input type="text" id="time" name="time" class="form-control"/>
-      <input type="hidden" id="title" name="title" class="form-control" value="@film.getTitle"/>
-      <div class="actions" id="margBottom">
-        <input type="submit" value="Add Showing" class="btn btn-primary">
-        <a href="@routes.AdminController.adminFilm()" <button class="btn btn-warning">Cancel</button></a>
-      </div>
-  </form>
-  </div>
-  }
+    <div class="m-header scene_element scene_element--fadein">
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <h3>Add a new Showing</h3>
+                <div class="panel panel-default credit-card-box">
+                    <div class="panel-body">
+                        <form method="post" action="@routes.AdminController.adminShowingSubmit()" class="form-horizontal">
+                            <div class="col-xs-12">
+                                <label>Screen:</label>
+                                <input type="text" id="screen" name="screen" class="form-control"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <label class="control-label" for="date">Date:</label>
+                                <input class="form-control" id="date" name="date" placeholder="DD/MM/YYYY" type="text"/> <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                            <div class="col-xs-6">
+                                <label class="control-label" for="time">Time:</label>
+                                <input type="text" id="time" name="time" class="form-control"/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                                <input type="hidden" id="title" name="title" class="form-control" value="@film.getTitle"/>
+                            </div>
+                            <div class="actions" id="margBottom">
+                                <input type="submit" value="Add Showing" class="btn btn-primary">
+                                <a href="@routes.AdminController.adminFilm()" <button class="btn btn-warning">Cancel</button></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+    <!-- Include jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script>
+        $(document).ready(function () {
+            var date_input = $('input[name="date"]'); //our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'dd/mm/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
+        })
+</script>

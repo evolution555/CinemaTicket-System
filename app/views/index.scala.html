@@ -60,7 +60,7 @@
                         <!-- 4 posters to a row each poster for a particular movie on click go to movies own page pulled from db-->
                         <div class="m-page scene_element scene_element--fadeinup">
                             <div class="row">
-                                <div class="col-xs-12" id="posterSize">
+                                <div class="col-xs-10 col-xs-offset-1" id="posterSize">
                                 @for(f <- films) {
                                     @if(env.resource("public/images/FilmPosters/" + f.getTitle + ".jpg").isDefined) {
                                         <a href="@routes.HomeController.viewMovie(f.getTitle)"><img src="/assets/images/FilmPosters/@(f.getTitle + ".jpg")" /></a>
