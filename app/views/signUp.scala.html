@@ -8,25 +8,27 @@
             <div class="col-xs-6 col-xs-offset-3">
                 <div class="panel panel-default credit-card-box">
                     <div class="panel-body">
-                        @if(error != null){
+                        @if(error != null) {
                             <div class="alert alert-warning">
                                 <strong>@error</strong>
                             </div>
                         }
                         @helper.form(action = controllers.routes.HomeController.addUserSubmit(), 'class -> "form-horizontal", 'role -> "form") {
-                        @inputText(addUserForm("email"), '_label -> "Email:", 'class -> "form-control")
-                        @inputText(addUserForm("name"), '_label -> "Name:", 'class -> "form-control")
-                        @select(addUserForm("role"), options("select" -> "--- Please Select ---", "Admin" -> "Admin", "Customer" -> "Customer"), '_label -> "Role:")
-                        @inputPassword(addUserForm("password"), '_label -> "Password:", 'class -> "form-control")
-                        @inputPassword(addUserForm("passwordConfirm"), '_label -> "Confirm Password:", 'class -> "form-control")
-                        <div class="col-xs-6 col-xs-offset-3" id="margBottom">
-                            <input type="submit" value="Add User" class="btn btn-primary">
-                            <a href="@routes.HomeController.index()" <button class="btn btn-warning">Cancel</button></a>
-                         </div>
-                    </div>
+                            @inputText(addUserForm("email"), '_label -> "Email:", 'class -> "form-control")
+                            @inputText(addUserForm("name"), '_label -> "Name:", 'class -> "form-control")
+                            @select(addUserForm("role"), options("select" -> "--- Please Select ---", "Admin" -> "Admin", "Customer" -> "Customer"), '_label -> "Role:")
+                            @inputPassword(addUserForm("password"), '_label -> "Password:", 'class -> "form-control")
+                            @inputPassword(addUserForm("passwordConfirm"), '_label -> "Confirm Password:", 'class -> "form-control")
+                            <div class="span7 text-center"style="padding-bottom: 30px;padding-top: 30px;">
+                                <input type="submit" value="Add User" class="btn btn-lg btn-primary">
+                                <a href="@routes.HomeController.index()" <button class="btn btn-lg btn-warning">
+                                Cancel</button></a>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
-    }
 }
+}
+    <!--Created by Evan-->

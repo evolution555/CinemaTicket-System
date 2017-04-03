@@ -6,7 +6,9 @@ import play.data.format.*;
 import play.data.validation.*;
 
 import com.avaje.ebean.*;
-
+/**
+ * Created by evan.
+ */
 @Entity
 public class Film extends Model{
     @OneToMany(mappedBy = "titleId")
