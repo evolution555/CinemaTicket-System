@@ -1,4 +1,4 @@
-@(addCarouselForm: Form[models.carousel], user: models.users.User, error: String)
+@(newPaymentForm: Form[models.carousel], user: models.users.User, error: String)
 @import helper._
 
 @adminPages.adminMain("Add Film", user){
@@ -10,8 +10,8 @@
     }
 
       @helper.form(action = controllers.routes.AdminController.addCarouselSubmit(), 'class -> "form-horizontal", 'role -> "form", 'enctype -> "multipart/form-data") {
-      @inputText(addCarouselForm("title"), '_label -> "Title", 'class -> "form-control")
-      @inputText(addCarouselForm("description"), '_label -> "Description", 'class -> "form-control")
+      @inputText(newPaymentForm("title"), '_label -> "Title", 'class -> "form-control")
+      @inputText(newPaymentForm("description"), '_label -> "Description", 'class -> "form-control")
       <label>Banner Upload</label>
       <input class="btn-sm btn-default" id="margBottom" type="file" name="upload">
 

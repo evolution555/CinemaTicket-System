@@ -1,6 +1,14 @@
+html {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+}
 body{
     background-color: whitesmoke;
     font-family: 'Ubuntu', sans-serif;
+    margin: 0px;
+    min-height: 100%;
+    width: 100%;
 }
 
 #blue-title{
@@ -32,6 +40,7 @@ body{
 
 #black-nav{
     background-color:#222222;
+    margin-bottom: 5px;
 }
 .btn-success{
     background-color: #6EC2F6;

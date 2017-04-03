@@ -11,7 +11,7 @@ import com.avaje.ebean.*;
  * Created by evan_ on 01/04/2017.
  */
 @Entity
-public class Payments {
+public class Payments extends Model{
     @Constraints.Required
     private String name;
     @Id
@@ -21,12 +21,24 @@ public class Payments {
     private int expMonth;
     @Constraints.Required
     private int expYear;
+    @Constraints.Required
+    private int cvv2;
 
-    public Payments(String name, String cardNumber, int expMonth, int expYear) {
+    public Payments(String name, String cardNumber, int expMonth, int expYear, int cvv2) {
         this.name = name;
         this.cardNumber = cardNumber;
         this.expMonth = expMonth;
         this.expYear = expYear;
+        this.cvv2 = cvv2;
+    }
+
+    public boolean cardValidate(String cardNumber){
+        if(cardNumber.length() <=  16){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
     public String getName() {
@@ -60,4 +72,5 @@ public class Payments {
     public void setExpYear(int expYear) {
         this.expYear = expYear;
     }
+
 }

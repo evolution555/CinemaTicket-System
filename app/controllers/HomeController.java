@@ -56,26 +56,25 @@ public class HomeController extends Controller {
     public Result booking(String title, String sId, String time) {
         Film f = Film.find.byId(title);
         Showing s = Showing.find.byId(sId);
-        Form <Booking> newBookingForm = formFactory.form(Booking.class);
+        Form<Booking> newBookingForm = formFactory.form(Booking.class);
         return ok(booking.render(newBookingForm, getUserFromSession(), f, env, s, time, null));
     }
 
-    public Result bookingSubmit(){
-            Form <Booking> newBookingForm = formFactory.form(Booking.class).bindFromRequest();
-            Film f = null;
-            Showing s = null;
-            String time = null;
-            //Checking if Form has errors.
-            if(newBookingForm.hasErrors()){
-                return badRequest(booking.render(newBookingForm ,getUserFromSession(), f, env, s, time, "Error in form."));
-            }
-            //Adding Booking to database
-            Booking b = newBookingForm.get();
-            b.save();
-            flash("success" );
-            return redirect(controllers.routes.HomeController.index()); // change to payments
+    public Result bookingSubmit() {
+        Form<Booking> newBookingForm = formFactory.form(Booking.class).bindFromRequest();
+        Film f = null;
+        Showing s = null;
+        String time = null;
+        //Checking if Form has errors.
+        if (newBookingForm.hasErrors()) {
+            return badRequest(booking.render(newBookingForm, getUserFromSession(), f, env, s, time, "Error in form."));
+        }
+        //Adding Booking to database
+        Booking b = newBookingForm.get();
+        b.save();
+        flash("success");
+        return redirect(controllers.routes.HomeController.index()); // change to payments
     }
-
 
     public Result signUp() {
         Form<User> adduserForm = formFactory.form(User.class);
@@ -119,4 +118,5 @@ public class HomeController extends Controller {
     public static User getUserFromSession() {
         return User.getUserById(session().get("email"));
     }
+
 }

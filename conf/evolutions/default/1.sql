@@ -24,6 +24,15 @@ create table film (
   constraint pk_film primary key (title)
 );
 
+create table payments (
+  card_number                   varchar(255) not null,
+  name                          varchar(255),
+  exp_month                     integer,
+  exp_year                      integer,
+  cvv2                          integer,
+  constraint pk_payments primary key (card_number)
+);
+
 create table showing (
   showing_id                    varchar(255) not null,
   title                         varchar(255),
@@ -67,6 +76,8 @@ drop table if exists booking;
 drop sequence if exists booking_seq;
 
 drop table if exists film;
+
+drop table if exists payments;
 
 drop table if exists showing;
 
