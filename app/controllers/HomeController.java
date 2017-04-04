@@ -1,6 +1,7 @@
 package controllers;
 
 import controllers.*;
+import controllers.routes;
 import play.api.Environment;
 import play.mvc.*;
 
@@ -65,15 +66,17 @@ public class HomeController extends Controller {
         Film f = null;
         Showing s = null;
         String time = null;
+        String error = null;
         //Checking if Form has errors.
         if (newBookingForm.hasErrors()) {
             return badRequest(booking.render(newBookingForm, getUserFromSession(), f, env, s, time, "Error in form."));
         }
         //Adding Booking to database
         Booking b = newBookingForm.get();
+        Form<Payments> newPaymentForm = formFactory.form(Payments.class);
         b.save();
         flash("success");
-        return redirect(controllers.routes.HomeController.index()); // change to payments
+        return ok(payment.render(newPaymentForm,getUserFromSession(),env,error)); // change to payments
     }
 
     public Result signUp() {
