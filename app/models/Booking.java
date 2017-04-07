@@ -24,10 +24,13 @@ public class Booking extends Model {
 
     private final double COST = 10.00;
 
+    public Booking() {
+    }
 
-    public Booking(int qty, String time, String date) {
+    public Booking(int qty, String time, String date, String title) {
         this.bookingId = genId();
         this.qty = qty;
+        this.title = title;
         this.time = time;
         this.date = date;
         this.total = calcTotal(qty);

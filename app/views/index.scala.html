@@ -15,6 +15,16 @@
                 </div>
 
             }
+            @if(flash().containsKey("error")) {
+                <div class="row">
+                    <div class="col-xs-12" style="text-align: center">
+                        <div class="alert alert-danger">
+                            <strong>@flash().get("error")</strong>
+                        </div>
+                    </div>
+                </div>
+
+            }
             @if(user != null) {
                 <h1>Welcome back: @user.getName</h1>
             }

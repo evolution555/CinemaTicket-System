@@ -1,4 +1,4 @@
-@(book: models.Booking, newPaymentForm: Form[models.Payments], user: models.users.User, env: play.api.Environment, error: String)
+@(book: models.Booking, newPaymentForm: DynamicForm, user: models.users.User, env: play.api.Environment, error: String)
 @import helper._
 
 @main("Ticket Payment", user) {
@@ -11,11 +11,14 @@
                     <div class="m-header scene_element scene_element--fadeinright">
                         <div class="panel panel-default credit-card-box">
                             <div class="panel-body">
-                                <p><b>Title:</b> </p>
-                                <p><b>Date:</b> </p>
-                                <p><b>Time:</b> </p>
-                                <p><b>Quantity:</b></p>
-                                <p><b>Total:</b></p>
+                                <div class="col-xs-12" id="posterSize">
+                                    <img class="col-xs-offset-2" src="/assets/images/FilmPosters/@(book.getTitle + ".jpg")" />
+                                </div>
+                                <p><b>Title: </b>@book.getTitle</p>
+                                <p><b>Date: </b>@book.getDate</p>
+                                <p><b>Time: </b>@book.getTime</p>
+                                <p><b>Ticket Quantity: </b>@book.getQty</p>
+                                <p><b>Total: €</b> @book.getTotal</p>
                             </div>
                         </div>
                     </div>
@@ -24,75 +27,68 @@
                 <div class="col-lg-5">
                     <div class="m-header scene_element scene_element--fadeinright">
                             <!-- CREDIT CARD FORM STARTS HERE -->
-                        @helper.form(action = controllers.routes.PaymentController.paymentSubmit(), 'class -> "form-horizontal", 'role -> "form", 'enctype -> "multipart/form-data") {
+                        <form method="post" action="@routes.PaymentController.paymentSubmit" class="form-horizontal">
                             <div class="panel panel-default credit-card-box">
                                 <div class="panel-body">
                                     <div class="row">
-                                        <img class="img-responsive center-block" src="http://i76.imgup.net/accepted_c22e0.png">
+                                        <h3 class="page-header" style="text-align: center;
+                                            margin-bottom: 20px;
+                                            margin-top: 0px;
+                                            padding-top: 0px">Payment Details</h3>
+                                        <img class="img-responsive center-block" style="margin-top: 20px;
+                                            margin-bottom: 20px" src="http://i76.imgup.net/accepted_c22e0.png">
                                         <div class="col-xs-12">
-                                            @inputText(newPaymentForm("name"), '_label -> "Cardholder Name:", 'class -> "form-control")
-
+                                            <label>Cardholder Name:</label>
+                                            <input type="text" name="name" class="form-control" placeholder="John Smith"/>
                                             <br>
-                                            <label for="cardNumber">Card Number:</label>
-                                            <input type=text class="form-control" id="cardNumber" maxlength="16"/>
-                                            <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+
+                                            <label>Card Number:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="cardNumber" placeholder="Valid Card Number" maxlength="16" required autofocus/>
+                                                <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                            </div>
                                             <br>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-6 col-md-6">
                                             <label for="expMonth">Expiry:</label>
-                                            <select required class="form-control" id="expMonth">
+                                            <select type="month" required class="form-control" name="expMonth">
                                                 <option>Month</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                                <option>11</option>
-                                                <option>12</option>
+                                                @for(x <- 1 to 12) {
+                                                    <option>@x</option>
+                                                }
                                             </select>
                                         </div>
                                         <div class="col-xs-6 col-md-6">
                                             <label></label>
-                                            <select class="form-control" id="expYear">
+                                            <select class="form-control" name="expYear">
                                                 <option>Year</option>
-                                                <option>2017</option>
-                                                <option>2018</option>
-                                                <option>2019</option>
-                                                <option>2020</option>
-                                                <option>2021</option>
-                                                <option>2022</option>
-                                                <option>2023</option>
-                                                <option>2024</option>
-                                                <option>2025</option>
+                                                @for(x <- 2017 to 2030) {
+                                                    <option>@x</option>
+                                                }
                                             </select>
                                         </div>
                                         <div class="col-lg-6 col-lg-offset-3">
                                             <label for="cvv2">CVV2:</label>
-                                            <input required type=text class="form-control" id="cvv2" maxlength="3">
+                                            <input required type=text class="form-control" id="cvv2" maxlength="3" placeholder="CVV">
                                             <br>
                                         </div>
                                     </div>
-                                    <div class="span7 text-center">
-                                        <input type="submit" value="Confirm Purchase" class="btn btn-primary">
-                                        <a href="@routes.HomeController.index()"></a> <button class="btn btn-warning">
+                                    <div class="span7 text-center" style="padding-top: 20px">
+                                        <input type="submit" value="Confirm Purchase" class="btn btn-lg btn-primary">
+                                        <a href="@routes.HomeController.index()"></a> <button class="btn btn-lg btn-warning">
                                         Cancel</button>
                                     </div>
                                 </div>
                             </div>
-                        }
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    }else{
+    } else {
         <h1> No Film Selected</h1>
     }
-    }
+}
     <!--Created by Evan-->

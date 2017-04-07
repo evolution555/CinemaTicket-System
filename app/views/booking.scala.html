@@ -1,4 +1,4 @@
-@(book: models.Booking, addBookingForm: Form[models.Booking], user: models.users.User, film: models.Film, env: play.api.Environment, show: models.Showing, time: String, error: String)
+@(book: models.Booking, addBookingForm: DynamicForm, user: models.users.User, film: models.Film, env: play.api.Environment, show: models.Showing, time: String, error: String)
 @import helper._
 
 @main("Booking", user){

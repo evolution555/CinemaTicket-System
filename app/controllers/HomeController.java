@@ -58,7 +58,7 @@ public class HomeController extends Controller {
         Film f = Film.find.byId(title);
         Showing s = Showing.find.byId(sId);
         Booking b = new Booking();
-        Form<Booking> newBookingForm = formFactory.form(Booking.class);
+        DynamicForm newBookingForm = formFactory.form().bindFromRequest();
         return ok(booking.render(b, newBookingForm, getUserFromSession(), f, env, s, time, null));
     }
 
@@ -69,20 +69,27 @@ public class HomeController extends Controller {
         String time = null;
         Booking bk = null;
         String error = null;
-        //Checking if Form has errors.
-        /*if (newBookingForm.hasErrors()) {
+        /*
+        if (newBookingForm.hasErrors()) {
             return badRequest(booking.render(bk, newBookingForm, getUserFromSession(), f, env, s, time, "Error in form."));
         }*/
         //Adding Booking to database
         int qty = Integer.parseInt(newBookingForm.get("qty"));
+        if (qty == 0) {
+            flash("error", " Invalid amount selected.");
+            List<Film> allFilms = Film.findAll();
+            List<carousel> allCarousel = carousel.findAll();
+            return ok(index.render(getUserFromSession(), allFilms, env, allCarousel));
+        }
+        String title = newBookingForm.get("title");
         String timeIn = newBookingForm.get("time");
-        String date= newBookingForm.get("date");
+        String date = newBookingForm.get("date");
 
-        Booking b = new Booking (qty, timeIn, date);
-        Form<Payments> newPaymentForm = formFactory.form(Payments.class);
+        Booking b = new Booking(qty, timeIn, date, title);
+        DynamicForm newPaymentForm = formFactory.form();
         b.save();
         flash("success");
-        return ok(payment.render(b, newPaymentForm,getUserFromSession(),env,error)); // change to payments
+        return ok(payment.render(b, newPaymentForm, getUserFromSession(), env, error)); // change to payments
     }
 
     public Result signUp() {

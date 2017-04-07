@@ -20,9 +20,10 @@
                             @inputText(addFilmForm("trailerURL"), '_label -> "Trailer (Embedded URL Link):", 'class -> "form-control")
                             @inputText(addFilmForm("duration"), '_label -> "Duration (Mins):", 'class -> "form-control")
                             @inputText(addFilmForm("summery"), '_label -> "Description:", 'class -> "form-control")
-                            <label>Poster Upload:</label>
-                            <input class="btn-sm btn-default" id="margBottom" type="file" name="upload">
-
+                            <label class="custom-file">Poster Upload:
+                                <input class="custom-file-input" id="file" type="file" name="upload">
+                                <span class="custom-file-control"></span>
+                            </label>
 
                             <div class="span7 text-center">
                                 <input type="submit" value="Add Film" class="btn btn-lg btn-primary">

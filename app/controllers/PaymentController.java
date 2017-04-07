@@ -27,7 +27,7 @@ public class PaymentController extends Controller {
     }
 
     public Result payment() {
-        Form<Payments> newPaymentForm = formFactory.form(Payments.class);
+        DynamicForm newPaymentForm = formFactory.form();
         User u = HomeController.getUserFromSession();
         String error = null;
         Booking b = null;
@@ -35,15 +35,18 @@ public class PaymentController extends Controller {
     }
 
     public Result paymentSubmit() {
-        Form<Payments> newPaymentForm = formFactory.form(Payments.class).bindFromRequest();
-        Form<Payments> errorForm = formFactory.form(Payments.class).bindFromRequest();
+        DynamicForm newPaymentForm = formFactory.form().bindFromRequest();
+        DynamicForm errorForm = formFactory.form().bindFromRequest();
         Booking b = null;
-        if (newPaymentForm.hasErrors()) {
-            return badRequest(payment.render(b, errorForm, HomeController.getUserFromSession(), env, "Error in form."));
-        }
-         Payments p = newPaymentForm.get();
-         p.save();
-        flash("success");
+
+        String name = newPaymentForm.get("name");
+        String cardNo = newPaymentForm.get("cardNumber");
+        int month = Integer.parseInt(newPaymentForm.get("expMonth"));
+        int year = Integer.parseInt(newPaymentForm.get("expYear"));
+        int cvv = Integer.parseInt(newPaymentForm.get("cvv2"));
+        Payments pay = new Payments(name, cardNo, month, year, cvv);
+        pay.save();
+        flash("success", "Payment Successful enjoy your movie.");
         return redirect(routes.HomeController.index());
     }
 }
