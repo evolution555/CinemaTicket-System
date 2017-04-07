@@ -2,15 +2,17 @@ package models;
 
 import java.util.*;
 import javax.persistence.*;
+
 import play.data.format.*;
 import play.data.validation.*;
 
 import com.avaje.ebean.*;
+
 /**
  * Created by evan.
  */
 @Entity
-public class Booking extends Model{
+public class Booking extends Model {
     @Id //Primary Key
     private int bookingId;
     @ManyToOne()
@@ -23,22 +25,23 @@ public class Booking extends Model{
     private final double COST = 10.00;
 
 
-    public Booking(int qty, String time, String date, int totalIn) {
+    public Booking(int qty, String time, String date) {
         this.bookingId = genId();
         this.qty = qty;
         this.time = time;
         this.date = date;
-        this.total= calcTotal(qty);
+        this.total = calcTotal(qty);
     }
 
-    public int genId(){
+    public int genId() {
         Random rand = new Random();
-       int randNum = rand.nextInt((9999 - 1001) + 1) + 1001;
-       return randNum;
+        int randNum = rand.nextInt((9999 - 1001) + 1) + 1001;
+        return randNum;
     }
-    public double calcTotal(int qty){
+
+    public double calcTotal(int qty) {
         double newTotal;
-        newTotal= qty * COST;
+        newTotal = qty * COST;
         return newTotal;
     }
 

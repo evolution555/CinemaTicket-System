@@ -41,6 +41,12 @@ body {
     background-color: #222222;
 }
 
+.navbar-default .navbar-nav > li > a :visited{
+    color: whitesmoke;
+    border-color: #222222;
+    background-color: #222222;
+}
+
 .page-header {
     border-color: #6EC2F6;
 }

@@ -1,4 +1,4 @@
-@(addBookingForm: Form[models.Booking], user: models.users.User, film: models.Film, env: play.api.Environment, show: models.Showing, time: String, error: String)
+@(book: models.Booking, addBookingForm: Form[models.Booking], user: models.users.User, film: models.Film, env: play.api.Environment, show: models.Showing, time: String, error: String)
 @import helper._
 
 @main("Booking", user){
@@ -20,8 +20,9 @@
                             <input type="hidden" name="title" id="title" value="@film.getTitle">
                             <input type="hidden" name="time" id="time" value="@time">
                             <input type="hidden" name="date" id="date" value="@show.getDate">
+                            <input type="hidden" name="total" id="total" value="@book.getTotal">
                             <div class="actions" id="margBottom">
-                                <input type="submit" value="Add Booking" class="btn btn-primary">
+                                <input type="submit" value="Book Now" class="btn btn-primary">
                                 <a href="@routes.HomeController.index()"></a> <button class="btn btn-warning">Cancel</button>
                             </div>
                         }

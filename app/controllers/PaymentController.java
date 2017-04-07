@@ -30,14 +30,16 @@ public class PaymentController extends Controller {
         Form<Payments> newPaymentForm = formFactory.form(Payments.class);
         User u = HomeController.getUserFromSession();
         String error = null;
-        return ok(payment.render(newPaymentForm, u, env, error));
+        Booking b = null;
+        return ok(payment.render(b, newPaymentForm, u, env, error));
     }
 
     public Result paymentSubmit() {
         Form<Payments> newPaymentForm = formFactory.form(Payments.class).bindFromRequest();
         Form<Payments> errorForm = formFactory.form(Payments.class).bindFromRequest();
+        Booking b = null;
         if (newPaymentForm.hasErrors()) {
-            return badRequest(payment.render(errorForm, HomeController.getUserFromSession(), env, "Error in form."));
+            return badRequest(payment.render(b, errorForm, HomeController.getUserFromSession(), env, "Error in form."));
         }
          Payments p = newPaymentForm.get();
          p.save();
