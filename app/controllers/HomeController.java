@@ -57,7 +57,7 @@ public class HomeController extends Controller {
     public Result booking(String title, String sId, String time) {
         Film f = Film.find.byId(title);
         Showing s = Showing.find.byId(sId);
-        Booking b = null;
+        Booking b = new Booking();
         Form<Booking> newBookingForm = formFactory.form(Booking.class);
         return ok(booking.render(b, newBookingForm, getUserFromSession(), f, env, s, time, null));
     }
