@@ -4,7 +4,7 @@ import java.util.*;
 import javax.persistence.*;
 import play.data.format.*;
 import play.data.validation.*;
-
+import org.mindrot.jbcrypt.BCrypt;
 import com.avaje.ebean.*;
 
 /**
@@ -12,34 +12,21 @@ import com.avaje.ebean.*;
  */
 @Entity
 public class Payments extends Model{
-    @Constraints.Required
     private String name;
     @Id
-    @Constraints.Required
     private String cardNumber;
-    @Constraints.Required
-    private int expMonth;
-    @Constraints.Required
+    private String expMonth;
     private int expYear;
-    @Constraints.Required
     private int cvv2;
 
-    public Payments(String name, String cardNumber, int expMonth, int expYear, int cvv2) {
+    public Payments(String name, String cardNumber, String expMonth, int expYear, int cvv2) {
         this.name = name;
-        this.cardNumber = cardNumber;
+        this.cardNumber =BCrypt.hashpw(cardNumber, BCrypt.gensalt());
         this.expMonth = expMonth;
         this.expYear = expYear;
         this.cvv2 = cvv2;
     }
 
-    public boolean cardValidate(String cardNumber){
-        if(cardNumber.length() <=  16){
-            return true;
-        }else{
-            return false;
-        }
-
-    }
 
     public String getName() {
         return name;
@@ -57,11 +44,11 @@ public class Payments extends Model{
         this.cardNumber = cardNumber;
     }
 
-    public int getExpMonth() {
+    public String getExpMonth() {
         return expMonth;
     }
 
-    public void setExpMonth(int expMonth) {
+    public void setExpMonth(String expMonth) {
         this.expMonth = expMonth;
     }
 
@@ -73,4 +60,11 @@ public class Payments extends Model{
         this.expYear = expYear;
     }
 
+    public int getCvv2() {
+        return cvv2;
+    }
+
+    public void setCvv2(int cvv2) {
+        this.cvv2 = cvv2;
+    }
 }

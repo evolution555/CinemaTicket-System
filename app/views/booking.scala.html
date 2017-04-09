@@ -1,37 +1,40 @@
-@(addBookingForm: Form[models.Booking], user: models.users.User, film: models.Film, env: play.api.Environment, show: models.Showing, time: String, error: String)
+@(book: models.Booking, addBookingForm: DynamicForm, user: models.users.User, film: models.Film, env: play.api.Environment, show: models.Showing, time: String, error: String)
 @import helper._
 
-@main("Booking", user){
-    @if(film != null){
+@main("Booking", user) {
+    @if(film != null) {
         <!-- Portfolio Item Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Booking</h1>
-                <div class="m-header scene_element scene_element--fadeinright">
-                    <div class="panel panel-default credit-card-box">
-                        <div class="panel-body">
-                        <p><b>Title:</b> @film.getTitle</p>
-                        <p><b>Date:</b> @show.getDate </p>
-                        <p><b>Time:</b> @time</p>
+                    <h1 class="page-header">Booking</h1>
+                    <div class="m-header scene_element scene_element--fadeinright" style="padding-bottom: 138px">
+                        <div class="panel panel-default credit-card-box" style="padding-bottom: 50px; padding-top: 50px">
+                            <div class="panel-body">
+                                <p style="padding-top: "><b>Title:</b> @film.getTitle</p>
+                                <p><b>Date:</b> @show.getDate </p>
+                                <p><b>Time:</b> @time</p>
 
-                        @helper.form(action = controllers.routes.HomeController.bookingSubmit(), 'class -> "form-horizontal", 'role -> "form", 'enctype -> "multipart/form-data") {
-                            @*Number of ticket selection*@
-                            @select(addBookingForm("qty"), options("0" -> "Select", "1" -> "1", "2" -> "2", "3" -> "3", "4" -> "4", "5" -> "5", "6" -> "6", "7" -> "7", "8" -> "8", "9" -> "9"), '_label -> "Quantity")
-                            <input type="hidden" name="title" id="title" value="@film.getTitle">
-                            <input type="hidden" name="time" id="time" value="@time">
-                            <input type="hidden" name="date" id="date" value="@show.getDate">
-                            <div class="actions" id="margBottom">
-                                <input type="submit" value="Add Booking" class="btn btn-primary">
-                                <a href="@routes.HomeController.index()"></a> <button class="btn btn-warning">Cancel</button>
+                                @helper.form(action = controllers.routes.HomeController.bookingSubmit(), 'class -> "form-horizontal", 'role -> "form", 'enctype -> "multipart/form-data") {
+                                    @*Number of ticket selection*@
+                                    @select(addBookingForm("qty"), options("0" -> "Select", "1" -> "1", "2" -> "2", "3" -> "3", "4" -> "4", "5" -> "5", "6" -> "6", "7" -> "7", "8" -> "8", "9" -> "9"), '_label -> "Quantity")
+                                    <input type="hidden" name="title" id="title" value="@film.getTitle">
+                                    <input type="hidden" name="time" id="time" value="@time">
+                                    <input type="hidden" name="date" id="date" value="@show.getDate">
+                                    <input type="hidden" name="total" id="total" value="@book.getTotal">
+                                    <div class="actions" id="margBottom">
+                                        <input type="submit" value="Book Now" class="btn btn-primary">
+                                        <a href="@routes.HomeController.index()"></a> <button class="btn btn-warning">
+                                        Cancel</button>
+                                    </div>
+                                }
+
                             </div>
-                        }
-
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-            }else{
+            } else {
         <h1>Booking not available</h1>
     }
 

@@ -13,6 +13,7 @@ import play.mvc.Result;
 import views.html.booking;
 import views.html.payment;
 import views.html.signUp;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
@@ -27,21 +28,35 @@ public class PaymentController extends Controller {
     }
 
     public Result payment() {
-        Form<Payments> newPaymentForm = formFactory.form(Payments.class);
+        DynamicForm newPaymentForm = formFactory.form();
         User u = HomeController.getUserFromSession();
         String error = null;
-        return ok(payment.render(newPaymentForm, u, env, error));
+        Booking b = null;
+        return ok(payment.render(b, newPaymentForm, u, env, error));
     }
 
     public Result paymentSubmit() {
-        Form<Payments> newPaymentForm = formFactory.form(Payments.class).bindFromRequest();
-        Form<Payments> errorForm = formFactory.form(Payments.class).bindFromRequest();
-        if (newPaymentForm.hasErrors()) {
-            return badRequest(payment.render(errorForm, HomeController.getUserFromSession(), env, "Error in form."));
+        DynamicForm newPaymentForm = formFactory.form().bindFromRequest();
+        DynamicForm errorForm = formFactory.form().bindFromRequest();
+        User u = HomeController.getUserFromSession();
+        Booking b = null;
+        String name = newPaymentForm.get("name");
+        String cardNo = newPaymentForm.get("cardNumber");
+        if(newPaymentForm.get("expMonth") == "Month"){
+            flash("error", "Please select a valid expirey month..");
+            return redirect(routes.HomeController.index());
         }
-         Payments p = newPaymentForm.get();
-         p.save();
-        flash("success");
+        String month = newPaymentForm.get("expMonth");
+        int year = Integer.parseInt(newPaymentForm.get("expYear"));
+         if(newPaymentForm.get("expYear") == "Year"){
+             flash("error", "Please select a valid expirey year.");
+             return redirect(routes.HomeController.index());
+        }
+        int cvv = Integer.parseInt(newPaymentForm.get("cvv2"));
+
+        Payments pay = new Payments(name, cardNo, month, year, cvv);
+        pay.save();
+        flash("success", "Payment Successful enjoy your movie.");
         return redirect(routes.HomeController.index());
     }
 }

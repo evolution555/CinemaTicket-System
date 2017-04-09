@@ -22,7 +22,7 @@ public class Showing extends Model{
     @Formats.DateTime(pattern="dd/mm/yyyy'T'HH:mm:ss")
     private String date;
 
-    @OneToMany (mappedBy = "showing")
+    @OneToMany (mappedBy = "showing", cascade = CascadeType.ALL)
     private List<ShowingTime> times = new ArrayList<>();
 
     public Showing(){
