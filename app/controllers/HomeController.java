@@ -107,7 +107,7 @@ public class HomeController extends Controller {
         Form errorForm = formFactory.form().bindFromRequest();
         if (newUserForm.hasErrors()) {
             return badRequest(signUp.render(errorForm, "Error with form."));
-        }
+    }
         if (newUserForm.get("email").equals("") || newUserForm.get("name").equals("")) {
             return badRequest(signUp.render(errorForm, "Please enter an email and a name."));
         }

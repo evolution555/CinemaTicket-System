@@ -44,7 +44,7 @@
 
                                             <label>Card Number:</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="cardNumber" placeholder="Valid Card Number" maxlength="16" required autofocus/>
+                                                <input type="text" class="form-control" name="cardNumber" placeholder="Valid Card Number" minlength="16" maxlength="16" required autofocus/>
                                                 <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                                             </div>
                                             <br>
@@ -53,25 +53,39 @@
                                     <div class="row">
                                         <div class="col-xs-6 col-md-6">
                                             <label for="expMonth">Expiry:</label>
-                                            <select type="month" required class="form-control" name="expMonth">
+                                            <select type="month" class="form-control" name="expMonth" required>
                                                 <option>Month</option>
-                                                @for(x <- 1 to 12) {
-                                                    <option>@x</option>
-                                                }
+                                                <option>Jan</option>
+                                                <option>Feb</option>
+                                                <option>Mar</option>
+                                                <option>Apr</option>
+                                                <option>May</option>
+                                                <option>Jun</option>
+                                                <option>Jul</option>
+                                                <option>Aug</option>
+                                                <option>Sep</option>
+                                                <option>Oct</option>
+                                                <option>Nov</option>
+                                                <option>Dec</option>
                                             </select>
                                         </div>
                                         <div class="col-xs-6 col-md-6">
                                             <label></label>
-                                            <select class="form-control" name="expYear">
+                                            <select class="form-control" name="expYear" required>
                                                 <option>Year</option>
-                                                @for(x <- 2017 to 2030) {
-                                                    <option>@x</option>
-                                                }
+                                                <option>2018</option>
+                                                <option>2019</option>
+                                                <option>2020</option>
+                                                <option>2021</option>
+                                                <option>2022</option>
+                                                <option>2023</option>
+                                                <option>2024</option>
+                                                <option>2025</option>
                                             </select>
                                         </div>
                                         <div class="col-lg-6 col-lg-offset-3">
                                             <label for="cvv2">CVV2:</label>
-                                            <input required type=text class="form-control" id="cvv2" maxlength="3" placeholder="CVV">
+                                            <input required type=password class="form-control" name="cvv2" minlength="3" maxlength="3" placeholder="CVV">
                                             <br>
                                         </div>
                                     </div>

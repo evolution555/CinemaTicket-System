@@ -27,7 +27,7 @@ create table film (
 create table payments (
   card_number                   varchar(255) not null,
   name                          varchar(255),
-  exp_month                     integer,
+  exp_month                     varchar(255),
   exp_year                      integer,
   cvv2                          integer,
   constraint pk_payments primary key (card_number)
