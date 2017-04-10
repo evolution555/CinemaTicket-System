@@ -1,5 +1,5 @@
 @(user: models.users.User, films: List[models.Film], env: play.api.Environment, carousel: List[models.carousel])
-@main("Index", user) {
+@main("Home", user) {
 </div>
     <div class="row">
         <div class="col-lg-12">
@@ -7,8 +7,8 @@
     ================================================== -->
             @if(flash().containsKey("success")) {
                 <div class="row">
-                    <div class="col-xs-6">
-                        <div class="alert alert-success">
+                    <div class="col-xs-12">
+                        <div class="alert alert-success" style="text-align: center">
                             <strong>@flash().get("success")</strong>
                         </div>
                     </div>
