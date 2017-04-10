@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.ico")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
         <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
@@ -25,22 +25,33 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
-                    @if(user != null){
-                        <h1>Admin Portal: @user.getName</h1>
-                    }
+                <div class="col-lg-7">
+                @if(user != null) {
+                    <h1>Admin Portal: @user.getName</h1>
+                }
                 </div>
-                <div class="col-lg-4">
-                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.LoginController.logout()" role="button">Logout</a>
-                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminBanners()" role="button">Banners</a>
-                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminFilm()" role="button">Home</a>
+                <div class="col-lg-5">
+                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.LoginController.logout()" role="button">
+                        Logout</a>
+                    <div class="dropdown">
+                        <button class="btn btn-lg btn-primary dropdown-toggle" id="right-btn" type="button" data-toggle="dropdown">
+                            Tools<span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="dropdown-header">Index Page Modifications</li>
+                            <li><a href="@routes.AdminController.adminBanners()" role="button">Banners</a></li>
+                            <li class="dropdown-header">Contact Us Modifications</li>
+                            <li><a href="#" role="button">Staff</a></li>
+                            <li><a href="#" role="button">Messages</a></li>
+                        </ul>
+                    </div>
+                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminFilm()" role="button">
+                        Home</a>
                 </div>
             </div>
 
 
             @content
         </div>
-
 
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
